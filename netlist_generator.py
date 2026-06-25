@@ -79,9 +79,9 @@ V2 theta4 0 DC {t4}
 """
 
 
-def _header(thetas):
+def _header(thetas, vn=_VN):
     return _HEADER.format(
-        vn=_VN, vbias=_VBIAS, vdd=_VDD,
+        vn=vn, vbias=_VBIAS, vdd=_VDD,
         t1=thetas[0], t2=thetas[1], t3=thetas[2], t4=thetas[3],
     )
 
@@ -102,7 +102,7 @@ def write_tran_netlist(thetas, ic_dict, path):
         f.write(content)
 
 
-def write_op_netlist(thetas, path):
+def write_op_netlist(thetas, path, vn=_VN):
     """Write DC operating-point netlist (no IC).
 
     Requires thetas < 1.7V for all 4 sensitivities to be non-zero.
@@ -110,8 +110,11 @@ def write_op_netlist(thetas, path):
     Args:
         thetas : [theta1, theta2, theta3, theta4] in Volts
         path   : output file path
+        vn     : tail-current reference voltage (default 1.0V); vary per
+                 datapoint to shift the DC equilibrium and create distinct
+                 training samples.
     """
     os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
-    content = _header(thetas) + _MOSFETS + "\n.OP\n\n.END\n"
+    content = _header(thetas, vn=vn) + _MOSFETS + "\n.OP\n\n.END\n"
     with open(path, "w") as f:
         f.write(content)
