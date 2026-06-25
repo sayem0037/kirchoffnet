@@ -1,0 +1,7 @@
+temp_netlists/
+__pycache__/
+*.pyc
+training_output.txt
+training_errors.txt
+training_log.csv
+.claude/
