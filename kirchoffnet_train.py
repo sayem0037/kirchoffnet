@@ -1,35 +1,36 @@
 """
-KirchhoffNet Regression Training — OP-only approach
-=====================================================
-One .OP simulation per datapoint gives BOTH the prediction AND the gradient
-at the same operating point, so the gradient actually minimises the loss.
+KirchhoffNet Regression Training — TRAN + sensitivity (single call)
+=====================================================================
+One .TRAN simulation per datapoint (sensitivity=True) gives BOTH the
+transient voltage prediction AND the sensitivity dV/dTheta at the
+same operating point, so the gradient directly minimises the TRAN loss.
 
-Why not .TRAN:
-  The ring switches to binary (0.14 V or 3.3 V) in < 1 ns regardless of IC.
-  Small theta updates never flip a rail, so TRAN-based MSE stays flat.
+Why short stop time (0.5 ns instead of 100 ns):
+  The ring latches to a binary rail (0.14 V or 3.3 V) in < 0.4 ns due
+  to the 4.77 mA tail current overwhelming the ~260 µA PMOS load (ratio
+  ~18:1).  At t = 100 ns the output is binary and dV/dTheta ≈ 0 (no
+  incremental sensitivity at a saturated rail).  Sampling at t = 0.5 ns
+  captures the circuit while it is still in the analog transition region:
+  V(node) is between the IC and the final rail, and sensitivity is non-zero.
 
 Input encoding:
-  'vn' (the tail-current reference, normally 1.0 V) is varied across the
-  10 datapoints.  Different vn values shift the ring's DC saddle-point to
-  a different equilibrium voltage, giving 10 distinct, analog targets.
+  4 random IC voltages (one per ring node) injected via .IC statement.
+  Each datapoint has a distinct IC pattern → distinct transient trajectory
+  → distinct V(output_node) at t = 0.5 ns.
 
-Constraint:
-  All thetas must stay < 1.7 V so every PMOS load stays in its linear
-  region and all 4 sensitivities remain non-zero.
-
-Loss / gradient:
+Loss / gradient (same as master):
   L        = (1/N) * sum_i (v_pred_i - target_i)^2
-  dL/dth_j = (2/N) * sum_i (v_pred_i - target_i) * dV_op/dth_j
+  dL/dth_j = (2/N) * sum_i (v_pred_i - target_i) * dV_tran/dth_j
 """
 
-import sys, os, json, csv
+import sys, os, json, csv, random
 
 SIM_SRC = r"D:\Simulator\circuit_simulator-main\src"
 if SIM_SRC not in sys.path:
     sys.path.insert(0, SIM_SRC)
 
 from main import run_simulation_core
-from netlist_generator import write_op_netlist
+from netlist_generator import write_tran_netlist
 
 # ---------------------------------------------------------------------------
 # Config
@@ -39,32 +40,36 @@ NETLIST_DIR  = os.path.join(BASE_DIR, "temp_netlists")
 LOG_FILE     = os.path.join(BASE_DIR, "training_log.csv")
 DATASET_FILE = os.path.join(BASE_DIR, "dataset.json")
 
-THETA_PARAMS   = ["V5", "V4", "V3", "V2"]
+VDD          = 3.3
+RING_NODES   = ["net2", "net3", "net4", "net6"]
+THETA_PARAMS = ["V5", "V4", "V3", "V2"]
+
 TEACHER_THETAS = [0.5, 0.5, 0.5, 0.5]
 TRAIN_THETAS   = [1.5, 1.5, 1.5, 1.5]
 
 OUTPUT_NODE = "net2"
+STOP_TIME   = "0.5n"       # sample before ring latches to binary
 N_DATA  = 10
-LR      = 0.05    # base LR; Adam normalises per-param so this is the step size
+LR      = 0.05
 EPOCHS  = 500
+SEED    = 42
 
-# Adam optimiser hyper-parameters
 BETA1, BETA2, EPS = 0.9, 0.999, 1e-8
 
-# 10 distinct vn values shift the DC equilibrium to 10 distinct outputs
-VN_VALUES = [round(0.5 + i * 0.1, 1) for i in range(N_DATA)]  # 0.5 … 1.4 V
-
 
 # ---------------------------------------------------------------------------
-# Simulator helper: single .OP call → prediction + sensitivity
+# Simulator helper: single .TRAN call → prediction + sensitivity
 # ---------------------------------------------------------------------------
-def get_op(thetas, vn, tag):
-    """Run .OP with sensitivity.  Returns (v_pred, {param: dV/dParam})."""
-    path = os.path.join(NETLIST_DIR, f"op_{tag}.txt")
-    write_op_netlist(thetas, path, vn=vn)
-    _, result = run_simulation_core(path, output_nodes=[OUTPUT_NODE], sensitivity=True)
+def get_tran(thetas, ic_dict, tag):
+    """Run .TRAN with sensitivity=True.
+    Returns (v_pred at final timestep, {param: dV/dParam at final timestep}).
+    """
+    path = os.path.join(NETLIST_DIR, f"tran_{tag}.txt")
+    write_tran_netlist(thetas, ic_dict, path, stop_time=STOP_TIME)
+    _, result = run_simulation_core(path, output_nodes=[OUTPUT_NODE],
+                                    sensitivity=True)
     if result is None:
-        raise RuntimeError(f"OP failed: thetas={thetas}, vn={vn}")
+        raise RuntimeError(f"TRAN failed: thetas={thetas}, ic={ic_dict}")
 
     v_raw  = result.get_voltage(OUTPUT_NODE)
     v_pred = float(v_raw[-1]) if hasattr(v_raw, "__len__") else float(v_raw)
@@ -73,7 +78,7 @@ def get_op(thetas, vn, tag):
     sens  = {}
     for p in THETA_PARAMS:
         if p in avail:
-            raw    = result.get_sensitivity(OUTPUT_NODE, p)
+            raw     = result.get_sensitivity(OUTPUT_NODE, p)
             sens[p] = float(raw[-1]) if hasattr(raw, "__len__") else float(raw)
         else:
             sens[p] = 0.0
@@ -84,15 +89,16 @@ def get_op(thetas, vn, tag):
 # Dataset
 # ---------------------------------------------------------------------------
 def generate_dataset():
-    """Generate targets using teacher thetas, one per vn value."""
-    print(f"Generating dataset  teacher_thetas={TEACHER_THETAS}")
-    print(f"  vn values: {VN_VALUES}")
+    """Generate targets using teacher thetas with random IC inputs."""
+    random.seed(SEED)
+    print(f"Generating dataset  teacher_thetas={TEACHER_THETAS}  stop_time={STOP_TIME}")
     os.makedirs(NETLIST_DIR, exist_ok=True)
     dataset = []
-    for i, vn in enumerate(VN_VALUES):
-        v_target, _ = get_op(TEACHER_THETAS, vn, tag=f"teacher_{i:02d}")
-        dataset.append({"vn": vn, "target": v_target})
-        print(f"  sample {i:2d}: vn={vn:.1f}V  target={v_target:.4f}V")
+    for i in range(N_DATA):
+        ic = {n: round(random.uniform(0.2, VDD - 0.2), 4) for n in RING_NODES}
+        v_target, _ = get_tran(TEACHER_THETAS, ic, tag=f"teacher_{i:02d}")
+        dataset.append({"ic": ic, "target": v_target})
+        print(f"  sample {i:2d}: ic={list(ic.values())}  target={v_target:.4f}V")
     with open(DATASET_FILE, "w") as f:
         json.dump(dataset, f, indent=2)
     print(f"Dataset saved -> {DATASET_FILE}\n")
@@ -103,12 +109,12 @@ def load_or_generate_dataset():
     if os.path.exists(DATASET_FILE):
         with open(DATASET_FILE) as f:
             data = json.load(f)
-        # Regenerate if it was created with the old IC-based format
-        if "vn" not in data[0]:
-            print("Old IC-based dataset found — regenerating with vn inputs.")
+        # Regenerate if it was created with the vn-based format (no "ic" key)
+        if "ic" not in data[0]:
+            print("vn-based dataset found — regenerating with IC inputs.")
             os.remove(DATASET_FILE)
             return generate_dataset()
-        print(f"Loaded dataset ({len(data)} samples)  vn={[d['vn'] for d in data]}")
+        print(f"Loaded dataset ({len(data)} samples)")
         return data
     return generate_dataset()
 
@@ -122,20 +128,20 @@ def train():
     N = len(dataset)
 
     thetas = list(TRAIN_THETAS)
-    print(f"\nKirchhoffNet training  (OP-only: prediction + gradient from same call)")
-    print(f"  Output node  : {OUTPUT_NODE}")
-    print(f"  N datapoints : {N}  |  Epochs: {EPOCHS}  |  LR: {LR}")
-    print(f"  Init thetas  : {thetas}")
+    print(f"\nKirchhoffNet training  (TRAN sensitivity=True, stop={STOP_TIME})")
+    print(f"  Output node   : {OUTPUT_NODE}")
+    print(f"  N datapoints  : {N}  |  Epochs: {EPOCHS}  |  LR: {LR}")
+    print(f"  Init thetas   : {thetas}")
     print(f"  Teacher thetas: {TEACHER_THETAS}")
-    print(f"  Targets      : {[d['target'] for d in dataset]}")
+    print(f"  Targets       : {[round(d['target'],4) for d in dataset]}")
     print("-" * 70)
 
     log_rows = [["epoch", "mse"] + [f"theta{i+1}" for i in range(4)]
                 + [f"sens_{p}" for p in THETA_PARAMS]]
 
     # Adam state
-    m = [0.0] * 4   # first moment
-    v = [0.0] * 4   # second moment
+    m = [0.0] * 4
+    v = [0.0] * 4
 
     for epoch in range(1, EPOCHS + 1):
         total_sq_err = 0.0
@@ -143,8 +149,9 @@ def train():
         last_sens    = {}
 
         for i, sample in enumerate(dataset):
-            v_pred, sens = get_op(thetas, sample["vn"],
-                                  tag=f"e{epoch:04d}_s{i:02d}")
+            # Single TRAN call: transient voltage + sensitivity at same time point
+            v_pred, sens = get_tran(thetas, sample["ic"],
+                                    tag=f"e{epoch:04d}_s{i:02d}")
             error         = v_pred - sample["target"]
             total_sq_err += error ** 2
             for j, p in enumerate(THETA_PARAMS):
@@ -153,17 +160,17 @@ def train():
 
         mse = total_sq_err / N
 
-        # Full gradient: dL/dθ_j = (2/N) * Σ_i error_i * sens_j
+        # dL/dθ_j = (2/N) * Σ_i error_i * dV_tran/dθ_j
         raw_grad = [(2.0 / N) * g for g in grad_acc]
 
-        # Adam update — normalises each param by its own gradient history
+        # Adam update
         for j in range(4):
             m[j] = BETA1 * m[j] + (1 - BETA1) * raw_grad[j]
             v[j] = BETA2 * v[j] + (1 - BETA2) * raw_grad[j] ** 2
             m_hat = m[j] / (1 - BETA1 ** epoch)
             v_hat = v[j] / (1 - BETA2 ** epoch)
             thetas[j] -= LR * m_hat / (v_hat ** 0.5 + EPS)
-            thetas[j]  = max(0.1, min(1.69, thetas[j]))   # keep in valid range
+            thetas[j]  = max(0.1, min(1.69, thetas[j]))
 
         log_rows.append([epoch, mse] + list(thetas)
                         + [last_sens.get(p, 0.0) for p in THETA_PARAMS])
@@ -183,17 +190,16 @@ def train():
         csv.writer(f).writerows(log_rows)
     print(f"\nTraining complete. Log -> {LOG_FILE}")
 
-    print(f"\n--- Final evaluation (output_node={OUTPUT_NODE}) ---")
-    print(f"{'#':>3}  {'vn':>5}  {'target':>8}  {'v_pred':>8}  {'error':>8}")
+    print(f"\n--- Final evaluation (output_node={OUTPUT_NODE}, stop={STOP_TIME}) ---")
+    print(f"{'#':>3}  {'target':>8}  {'v_pred':>8}  {'error':>8}")
     final_sq = 0.0
     for i, sample in enumerate(dataset):
-        v_pred, _ = get_op(thetas, sample["vn"], tag=f"final_{i:02d}")
+        v_pred, _ = get_tran(thetas, sample["ic"], tag=f"final_{i:02d}")
         err = v_pred - sample["target"]
         final_sq += err ** 2
-        print(f"{i:3d}  {sample['vn']:5.1f}  {sample['target']:8.4f}"
-              f"  {v_pred:8.4f}  {err:+8.4f}")
+        print(f"{i:3d}  {sample['target']:8.4f}  {v_pred:8.4f}  {err:+8.4f}")
     print(f"\nFinal MSE : {final_sq/N:.6f}")
-    print(f"Final thetas: {[round(t,4) for t in thetas]}")
+    print(f"Final thetas: {[round(t, 4) for t in thetas]}")
     return thetas
 
 

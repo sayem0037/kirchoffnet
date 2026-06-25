@@ -86,18 +86,22 @@ def _header(thetas, vn=_VN):
     )
 
 
-def write_tran_netlist(thetas, ic_dict, path):
+def write_tran_netlist(thetas, ic_dict, path, stop_time="0.5n"):
     """Write TRAN netlist with IC-based input injection.
 
     Args:
-        thetas  : [theta1, theta2, theta3, theta4] in Volts  (should be < 1.7V)
-        ic_dict : {"net2": v, "net3": v, "net4": v, "net6": v}
-        path    : output file path
+        thetas    : [theta1, theta2, theta3, theta4] in Volts  (should be < 1.7V)
+        ic_dict   : {"net2": v, "net3": v, "net4": v, "net6": v}
+        path      : output file path
+        stop_time : SPICE stop time string (default "0.5n").
+                    Keep < ~0.4ns so the ring is still in the analog transition
+                    region and dV/dTheta sensitivity is non-zero.
     """
     os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
     ic_line = (f".IC V(net2)={ic_dict['net2']} V(net3)={ic_dict['net3']}"
                f" V(net4)={ic_dict['net4']} V(net6)={ic_dict['net6']}")
-    content = _header(thetas) + _MOSFETS + ic_line + "\n\n.TRAN 100p 100n\n\n.END\n"
+    content = (_header(thetas) + _MOSFETS + ic_line
+               + f"\n\n.TRAN 10p {stop_time}\n\n.END\n")
     with open(path, "w") as f:
         f.write(content)
 
