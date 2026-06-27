@@ -364,3 +364,60 @@ Only theta1 and theta2 converge (theta3=1.50, theta4=1.48 unchanged — zero gra
 ![MSE Comparison](mse_comparison.png)
 
 The OP approach (blue) shows faster initial drop and deeper final MSE but with Adam oscillation. The TRAN approach (orange) converges more smoothly but plateaus slightly higher.
+
+---
+
+### `iris-classification` — 3-Class IRIS on TRAN (100 epochs)
+
+**Task:** Classify IRIS flowers (setosa / versicolor / virginica) using the circuit's transient voltage output.
+
+**Input encoding:** 4 IRIS features → 4 ring-node IC voltages (min-max normalised to [0.2 V, 3.1 V]):
+
+| IRIS feature      | Ring node | IC param    |
+|-------------------|-----------|-------------|
+| sepal length (cm) | net2      | ic["net2"]  |
+| sepal width (cm)  | net3      | ic["net3"]  |
+| petal length (cm) | net4      | ic["net4"]  |
+| petal width (cm)  | net6      | ic["net6"]  |
+
+**Output encoding:** V(net2) at t = 0.5 ns is compared to 3 class target voltages:
+
+| Class | Label       | Target voltage |
+|-------|-------------|---------------|
+| 0     | setosa      | 0.5 V         |
+| 1     | versicolor  | 1.65 V        |
+| 2     | virginica   | 2.8 V         |
+
+Classification: `argmin |V(net2) - class_voltage|` over the 3 targets.
+
+**Training results (30 samples, 10 per class):**
+
+| Epoch | MSE     | Accuracy |
+|-------|---------|----------|
+| 1     | 0.761   | 63%      |
+| 10    | 0.731   | 60%      |
+| 30    | 0.691   | 50%      |
+| 100   | 0.690   | 50%      |
+
+Final thetas: `[1.69, 0.10, 1.55, 0.10]` V (theta1 clamped at max, theta2/theta4 clamped at min).
+
+**Known limitation — ring propagation delay:** At t = 0.5 ns, only Block B (theta2/V4) has meaningful sensitivity for net2. The other blocks are 2–3 ring hops away; their signals have not propagated to net2 in time. Effective sensitivities at t = 0.5 ns:
+
+| Parameter   | dV(net2)/dParam |
+|-------------|-----------------|
+| V5 (theta1) | ~4e-06 (tiny)   |
+| V4 (theta2) | ~-9e-04 (active)|
+| V3 (theta3) | ~3e-10 (~zero)  |
+| V2 (theta4) | ~-3e-08 (~zero) |
+
+Because only theta2 drives the gradient, the circuit can adjust only one degree of freedom. Both theta2 and theta4 hit the lower clamp bound (0.1 V) by epoch 30, causing MSE and accuracy to plateau. The 50% accuracy (15/30) is above the 33% random baseline, demonstrating that even a single effective weight can partially separate the IRIS classes.
+
+**How to run:**
+```bash
+git checkout iris-classification
+python kirchoffnet_iris.py
+```
+
+Outputs: `iris_dataset.json`, `iris_training_log.csv`, `iris_results.png`.
+
+![IRIS Results](iris_results.png)
