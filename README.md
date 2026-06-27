@@ -421,3 +421,39 @@ python kirchoffnet_iris.py
 Outputs: `iris_dataset.json`, `iris_training_log.csv`, `iris_results.png`.
 
 ![IRIS Results](iris_results.png)
+
+---
+
+### `iris-hybrid` — TRAN 100ns prediction + .OP sensitivity (20 epochs)
+
+**Approach:** Hybrid — two simulator calls per datapoint per epoch:
+1. `.TRAN 100ns` → prediction `v_pred` (ring has settled to near-equilibrium)
+2. `.OP` with `vn = mean(IC voltages)` → all 4 `dV/dTheta` sensitivities
+
+**Feature normalisation:** `[0.8, 2.5]V` (raised from `[0.2, 3.1]V` to keep all IC voltages above the NMOS threshold of 0.536V, unblocking gradient flow through Blocks C and D).
+
+**Motivation:** Short TRAN (0.5ns) only gives non-zero sensitivity for theta2. The `.OP` DC analysis gives all 4 thetas non-zero gradients. Using `.OP` sensitivity as a proxy gradient for the TRAN loss was expected to train all 4 thetas simultaneously.
+
+**Results (20 epochs):**
+
+| Epoch | MSE    | Accuracy |
+|-------|--------|----------|
+| 1     | 1.432  | 60%      |
+| 10    | 1.527  | 60%      |
+| 20    | 3.604  | 33%      |
+
+Final thetas: `[1.69, 0.45, 1.69, 0.45]` V — theta1/theta3 clamped at max, theta2/theta4 collapsed to ~0.45V.
+
+**Why it diverged:** At 100ns the ring has latched to a near-binary output (~0.2V or ~3.3V). The `.OP` sensitivity is computed at the DC saddle-point equilibrium (~1.4V analog). These are fundamentally different operating points — the gradient direction that reduces the DC equilibrium error is not the same as the direction that reduces the latched TRAN error. The mismatch causes MSE to grow and accuracy to fall to the 33% random baseline by epoch 20.
+
+**Lesson:** The hybrid proxy-gradient approach only works when the prediction operating point and the sensitivity operating point are close. Short TRAN (0.5–3ns, analog output) + `.OP` sensitivity could work; long TRAN (100ns, binary-latched output) + `.OP` sensitivity does not.
+
+**How to run:**
+```bash
+git checkout iris-hybrid
+python kirchoffnet_iris_hybrid.py
+```
+
+Outputs: `iris_hybrid_dataset.json`, `iris_hybrid_log.csv`, `iris_hybrid_results.png`.
+
+![IRIS Hybrid Results](iris_hybrid_results.png)
