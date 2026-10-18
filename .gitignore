@@ -5,3 +5,9 @@ training_output.txt
 training_errors.txt
 training_log.csv
 .claude/
+*.zip
+mse_curve*.png
+*_errors.txt
+*_output.txt
+binary_reg/ppt_preview/
+
