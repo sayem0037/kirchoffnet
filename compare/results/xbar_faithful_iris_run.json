@@ -1,0 +1,62 @@
+{
+  "arm": "xbar_faithful",
+  "dataset": "iris",
+  "layers": [
+    [
+      4,
+      7
+    ],
+    [
+      7,
+      3
+    ]
+  ],
+  "cfg": {
+    "rf": [
+      "1.254081e+04",
+      "1.735673e+04"
+    ],
+    "rd": [
+      "1.138901e+05",
+      "2.000000e+05"
+    ],
+    "vtail": 0.85,
+    "vref": [
+      1.0,
+      0.9442268724843403
+    ],
+    "vcm": 1.0,
+    "swing": 0.4,
+    "gain": 4.0,
+    "bias": true,
+    "ideal_tia": false,
+    "vota": 0.9,
+    "r_on": 10000.0,
+    "r_off": 1000000.0,
+    "sign_inner": -1.0,
+    "sign_out": -1.0
+  },
+  "levels": null,
+  "adc_bits": 8,
+  "seed": 0,
+  "n_train": 90,
+  "n_test": 60,
+  "C": 3,
+  "converters": {
+    "dac": 11,
+    "adc": 10,
+    "adc_instances": 2,
+    "dac_instances": 11,
+    "adc_share": 128
+  },
+  "log": [
+    {
+      "epoch": 0,
+      "train": 0.9666666666666667,
+      "test": 0.9833333333333333,
+      "sw_train": 0.9888888888888889,
+      "sw_test": 0.9833333333333333,
+      "loss": NaN
+    }
+  ]
+}

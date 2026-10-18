@@ -1,0 +1,244 @@
+{
+  "dataset": "iris",
+  "C": 3,
+  "n_train": 90,
+  "n_test": 60,
+  "split_hash": "018e8568fcdd0793",
+  "cap_f": 1e-14,
+  "tech": {
+    "node_nm": 350,
+    "vdd": 3.3,
+    "l_min": 3.5e-07,
+    "gate_enc": 3e-07,
+    "sd_ext": 1.05e-06,
+    "r_sheet_poly": 1000.0,
+    "w_res": 1e-06,
+    "c_density": 0.001,
+    "a_sram_bitcell": 3.6e-11,
+    "e_sram_read_bit": 5e-13,
+    "fom_adc": 1e-13,
+    "fom_dac": 2e-14,
+    "a_adc_8b": 2e-08,
+    "a_dac_8b": 2e-09,
+    "c_load_default": 1e-14
+  },
+  "rows": [
+    {
+      "arm": "chance",
+      "test": 0.3333333333333333,
+      "trained": "-"
+    },
+    {
+      "arm": "KFQ (ours)",
+      "source": "kfq_iris_pilot.json",
+      "train": 0.9333333333333333,
+      "test": 0.9833333333333333,
+      "best": 1.0,
+      "conv": {
+        "best": 1.0,
+        "epoch": 11,
+        "n_epochs": 30,
+        "frac": 0.95
+      },
+      "n_params": 100,
+      "trained": "in-situ adjoint",
+      "hw_key": [
+        "kfq",
+        "iris"
+      ],
+      "hw": {
+        "latency_s": 1.8e-09,
+        "energy_j": 2.5438937187785614e-11,
+        "energy_core_j": 2.5438937187785614e-11,
+        "converters_j": 0.0,
+        "power_w": 0.014132742882103118,
+        "area_um2": 8114.759999999999,
+        "area_breakdown": {
+          "mos": 3594.7599999999998,
+          "res": 4120.0,
+          "cap": 399.99999999999994,
+          "total": 8114.759999999999
+        },
+        "devices": 415,
+        "converters": {
+          "adc": 0,
+          "dac": 0
+        },
+        "cap_f": 1e-14
+      }
+    },
+    {
+      "arm": "XBAR exsitu",
+      "source": "xbar_exsitu_iris_sized.json",
+      "train": 0.8444444444444444,
+      "test": 0.9,
+      "best": 0.9,
+      "conv": {
+        "best": 0.9,
+        "epoch": 1,
+        "n_epochs": 1,
+        "frac": 0.95
+      },
+      "n_params": 118,
+      "trained": "software + programmed",
+      "hw_key": [
+        "xbar",
+        "iris"
+      ],
+      "sw_test": 0.9833333333333333,
+      "mapping_loss": 0.08333333333333326,
+      "hw": {
+        "latency_s": 2.25e-08,
+        "energy_j": 4.234802004408427e-10,
+        "energy_core_j": 1.1116020044084266e-10,
+        "converters_j": 3.1232e-10,
+        "power_w": 0.00494045335292634,
+        "area_um2": 198088.48601999998,
+        "area_breakdown": {
+          "mos": 4457.8,
+          "res": 131230.68602,
+          "cap": 399.99999999999994,
+          "adc": 40000.0,
+          "dac": 22000.0,
+          "total": 198088.48601999998
+        },
+        "devices": 462,
+        "converters": {
+          "dac": 11,
+          "adc": 10,
+          "adc_instances": 2,
+          "dac_instances": 11,
+          "adc_share": 128
+        },
+        "cap_f": 1e-14
+      }
+    },
+    {
+      "arm": "DMLP INT4 parallel",
+      "source": "dmlp_iris_run.json",
+      "train": 0.9777777777777777,
+      "test": 1.0,
+      "best": 1.0,
+      "conv": {
+        "best": 1.0,
+        "epoch": 2,
+        "n_epochs": 40,
+        "frac": 0.95
+      },
+      "n_params": 59,
+      "trained": "software (quantization-aware)",
+      "hw": {
+        "latency_s": 2.0662485093906178e-08,
+        "energy_j": 3.1194885758179264e-09,
+        "area_um2": 556109.22,
+        "area_breakdown": {
+          "logic": 312921.84,
+          "accum": 234691.38,
+          "sram": 8496.0,
+          "total": 556109.22
+        },
+        "converters": {
+          "adc": 0,
+          "dac": 0
+        },
+        "note": "op-counted from measured cells"
+      }
+    },
+    {
+      "arm": "DMLP INT4 serial",
+      "source": "dmlp_iris_run.json",
+      "train": 0.9777777777777777,
+      "test": 1.0,
+      "best": 1.0,
+      "conv": {
+        "best": 1.0,
+        "epoch": 2,
+        "n_epochs": 40,
+        "frac": 0.95
+      },
+      "n_params": 59,
+      "trained": "software (quantization-aware)",
+      "hw": {
+        "latency_s": 5.9084156499906204e-08,
+        "energy_j": 3.1194885758179264e-09,
+        "area_um2": 101311.8,
+        "area_breakdown": {
+          "logic": 53037.600000000006,
+          "accum": 39778.2,
+          "sram": 8496.0,
+          "total": 101311.8
+        },
+        "converters": {
+          "adc": 0,
+          "dac": 0
+        },
+        "note": "op-counted from measured cells"
+      }
+    },
+    {
+      "arm": "DMLP INT8 parallel",
+      "source": "dmlp_iris_run.json",
+      "train": 0.9777777777777777,
+      "test": 0.9833333333333333,
+      "best": 1.0,
+      "conv": {
+        "best": 1.0,
+        "epoch": 2,
+        "n_epochs": 40,
+        "frac": 0.95
+      },
+      "n_params": 59,
+      "trained": "software (quantization-aware)",
+      "hw": {
+        "latency_s": 3.749537944030818e-08,
+        "energy_j": 1.0611671188827318e-08,
+        "area_um2": 1844740.02,
+        "area_breakdown": {
+          "logic": 1422372.0,
+          "accum": 405376.02,
+          "sram": 16992.0,
+          "total": 1844740.02
+        },
+        "converters": {
+          "adc": 0,
+          "dac": 0
+        },
+        "note": "op-counted from measured cells"
+      }
+    },
+    {
+      "arm": "DMLP INT8 serial",
+      "source": "dmlp_iris_run.json",
+      "train": 0.9777777777777777,
+      "test": 0.9833333333333333,
+      "best": 1.0,
+      "conv": {
+        "best": 1.0,
+        "epoch": 2,
+        "n_epochs": 40,
+        "frac": 0.95
+      },
+      "n_params": 59,
+      "trained": "software (quantization-aware)",
+      "hw": {
+        "latency_s": 1.1379106312571269e-07,
+        "energy_j": 1.0611671188827318e-08,
+        "area_um2": 326779.8,
+        "area_breakdown": {
+          "logic": 241080.0,
+          "accum": 68707.8,
+          "sram": 16992.0,
+          "total": 326779.8
+        },
+        "converters": {
+          "adc": 0,
+          "dac": 0
+        },
+        "note": "op-counted from measured cells"
+      }
+    }
+  ],
+  "missing": [
+    "XBAR insitu"
+  ]
+}
