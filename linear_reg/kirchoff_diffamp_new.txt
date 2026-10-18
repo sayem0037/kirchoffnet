@@ -1,0 +1,93 @@
+* kirchoff_diffamp_new — Xyce, adjoint sensitivity
+
+* --- Simple Level-1 MOSFET models ---
+.MODEL NCH NMOS LEVEL=1 VTO=0.531  KP=120u LAMBDA=0.02 GAMMA=0.4 PHI=0.7
+.MODEL PCH PMOS LEVEL=1 VTO=-0.71 KP=40u  LAMBDA=0.02 GAMMA=0.4 PHI=0.7
+
+* --- Top-level parameters ---
+.PARAM P_VN     = 1
+.PARAM P_THETA1 = 2.3
+.PARAM P_THETA2 = 2.7
+.PARAM P_THETA3 = 1.2
+.PARAM P_THETA4 = 2
+.PARAM P_VBIAS  = 2.7
+.PARAM P_VDD    = 3.3
+
+* --- Supplies and bias ---
+V6 vn    0 DC {P_VN}
+V1 vbias 0 DC {P_VBIAS}
+V0 vdd   0 DC {P_VDD}
+
+* --- Theta inputs (V3/V4 swap preserved from your original netlist) ---
+V5 theta1 0 DC {P_THETA1}
+V4 theta2 0 DC {P_THETA3}
+V3 theta3 0 DC {P_THETA2}
+V2 theta4 0 DC {P_THETA4}
+
+* === Block A (theta1): tail=net21, vp=net4, out=net6, dummy=net7 ===
+M1 net7  vn     net21 0   NCH L=650n W=6u
+M0 net6  net4   net21 0   NCH L=650n W=6u
+M5 net21 vbias  0     0   NCH L=1u   W=6u M=2
+M6 net7  theta1 vdd   vdd PCH L=2u   W=6u
+M2 net6  theta1 vdd   vdd PCH L=2u   W=6u
+
+* === Block B (theta2): tail=net22, vp=net6, out=net2, dummy=net8 ===
+M7 net8  vn     net22 0   NCH L=650n W=6u
+M4 net2  net6   net22 0   NCH L=650n W=6u
+M3 net22 vbias  0     0   NCH L=1u   W=6u M=2
+M8 net8  theta2 vdd   vdd PCH L=2u   W=6u
+M9 net2  theta2 vdd   vdd PCH L=2u   W=6u
+
+* === Block C (theta3): tail=net23, vp=net2, out=net3, dummy=net9 ===
+M12 net9  vn     net23 0   NCH L=650n W=6u
+M13 net3  net2   net23 0   NCH L=650n W=6u
+M14 net23 vbias  0     0   NCH L=1u   W=6u M=2
+M11 net9  theta3 vdd   vdd PCH L=2u   W=6u
+M10 net3  theta3 vdd   vdd PCH L=2u   W=6u
+
+* === Block D (theta4): tail=net1, vp=net3, out=net4, dummy=net5 ===
+M17 net5 vn     net1 0   NCH L=650n W=6u
+M16 net4 net3   net1 0   NCH L=650n W=6u
+M15 net1 vbias  0    0   NCH L=1u   W=6u M=2
+M18 net5 theta4 vdd  vdd PCH L=2u   W=6u
+M19 net4 theta4 vdd  vdd PCH L=2u   W=6u
+
+* --- Ring storage caps (one per output node) ---
+C3 net4 0 1p
+C2 net3 0 1p
+C1 net2 0 1p
+C0 net6 0 1p
+
+* --- Initial conditions (transient) and DC starting guess ---
+*.IC      V(net4)=1.5 V(net3)=2.6 V(net2)=4 V(net6)=0
+.NODESET V(net4)=1.5 V(net3)=2.6 V(net2)=4 V(net6)=0
+
+* --- Analyses ---
+.OP
+.SENS objfunc={V(net6)} 
++param=P_THETA1
+
+*.TRAN 100n 100u UIC
+
+* --- Measurements at 100 ns and 10 us ---
+*.MEASURE TRAN v_net2_100ns FIND V(net2) AT=100n
+*.MEASURE TRAN v_net3_100ns FIND V(net3) AT=100n
+*.MEASURE TRAN v_net4_100ns FIND V(net4) AT=100n
+*.MEASURE TRAN v_net6_100ns FIND V(net6) AT=100n
+*.MEASURE TRAN v_net2_10us  FIND V(net2) AT=10u
+*.MEASURE TRAN v_net3_10us  FIND V(net3) AT=10u
+*.MEASURE TRAN v_net4_10us  FIND V(net4) AT=10u
+*.MEASURE TRAN v_net6_10us  FIND V(net6) AT=10u
+
+* --- Adjoint sensitivity enabled ---
+.options SENSITIVITY direct=0 adjoint=1 stdoutput=1
+
+* --- Solver options ---
+.OPTIONS NONLIN ABSTOL=1e-12 RELTOL=1e-3
+.OPTIONS DEVICE GMIN=1e-12
+
+* --- Output files ---
+.PRINT SENS FILE=C:/Kirchhoffnet/sens_results_diff.txt V(net2) V(net3) V(net4) V(net6)
+*.PRINT TRAN FILE=C:/Kirchhoffnet/tran_results_diff.txt V(net2) V(net3) V(net4) V(net6)
+
+.END
