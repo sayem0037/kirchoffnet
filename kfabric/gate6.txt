@@ -1,0 +1,14 @@
+﻿GATE 6 -- whole-network signal budget, 64 -> 16 -> 10
+
+ratio = (fixed offset between classes) / (data-dependent variation)
+must be O(1); the failed MNIST run measured 47
+
+ margin  load_r0 load_r1   datasig     const   ratio  dead L0/L1     g1/g0
+----------------------------------------------------------------------------------
+   0.35      400    1600   0.00177   0.08521    48.2     0/162        0.14  --
+   0.35     1200    4800   0.00073   0.24993   340.7     0/174        0.00  --
+   0.25      400    1600   0.00007   0.08289  1269.4     0/193        0.00  --
+   0.25     1200    4800   0.00145   0.24991   172.4     0/185        0.00  --
+
+GATE 6 FAILED -- no point in this grid gets the fixed offset
+down to the scale of the signal. Do not start training.

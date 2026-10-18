@@ -1,0 +1,8 @@
+GATE B -- does the ARC feature map separate the data?
+
+config: neuron=inverter, fan_in=3
+config: M=16 neurons, k=12 rails, T=3 steps, R=4 banks, swing=0.26
+        40 train / 24 test, features = M*T*R = 192
+
+dataset     raw tr  ARC tr  ARC te  raw ref  wide tgt   verdict
+---------------------------------------------------------------

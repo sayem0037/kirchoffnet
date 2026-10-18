@@ -1,0 +1,23 @@
+{
+  "dataset": "mnist",
+  "C": 10,
+  "n_train": 300,
+  "n_test": 200,
+  "rows": [
+    [
+      "chance",
+      NaN,
+      0.1
+    ],
+    [
+      "raw + linear",
+      0.8766666666666667,
+      0.76
+    ],
+    [
+      "KFQ (argmax)",
+      0.74,
+      0.67
+    ]
+  ]
+}

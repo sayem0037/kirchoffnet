@@ -1,0 +1,12 @@
+﻿GATE 6 (solve) -- per-layer sizing against measured rows
+
+layer 0  thbar 2.095  load_r    144.7  I_col  7800.0 uA  V(col) 2.172 (floor 1.564)  rows 1.064+-0.200
+measured hidden rows: cm 1.571  span 0.031  (1.555 .. 1.585)
+layer 1  thbar 2.417  load_r     1133  I_col   811.5 uA  V(col) 2.381 (floor 1.886)  rows 1.571+-0.015
+
+  datasig     const   ratio  dead L0/L1
+------------------------------------------
+  0.00041   0.05926   145.9     0/142  
+
+GATE 6 FAILED -- the offset still dominates.
+  --thbar 2.095 2.417  --load-r 144.7 1133  --gain 4924

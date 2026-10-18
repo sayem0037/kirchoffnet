@@ -1,0 +1,2 @@
+﻿BENCHMARK | neuron=inverter fan_in=3 M=24 k=12 T=4 banks=2 swing=0.26
+

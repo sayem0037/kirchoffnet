@@ -1,0 +1,23 @@
+BENCHMARK | neuron=inverter fan_in=3 M=24 k=12 T=4 banks=2 swing=0.26
+
+twomoon  (2 classes, 400 train / 400 test, T=4, 192 features, 0.0 min)
+   model              train    test           95% CI
+   chance                     0.500
+   raw + linear       0.885   0.900   [0.867, 0.926]  <- >=0.90
+   ARC + linear       0.998   0.998   [0.986, 1.000]  <- >=0.90
+
+circle  (2 classes, 400 train / 400 test, T=4, 192 features, 42.8 min)
+   model              train    test           95% CI
+   chance                     0.500
+   raw + linear       0.505   0.492   [0.444, 0.541]
+   ARC + linear       1.000   1.000   [0.990, 1.000]  <- >=0.90
+
+2spirals  (2 classes, 400 train / 400 test, T=4, 192 features, 42.7 min)
+   model              train    test           95% CI
+   chance                     0.500
+   raw + linear       0.657   0.675   [0.628, 0.719]
+   ARC + linear       0.943   0.917   [0.886, 0.941]  <- >=0.90
+
+saved -> D:\Kirchoffnet\kirchoff_claude\kfabric\results\benchmark_toy.json
+
+3/3 datasets reach >=0.90 test with ARC + linear.

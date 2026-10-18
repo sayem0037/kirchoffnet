@@ -1,0 +1,17 @@
+15 frames x 900 solves (30x30), 7 workers
+  epoch   1  train 0.803
+  epoch   2  train 0.900
+  epoch   3  train 0.897
+  epoch   4  train 0.917
+  epoch   5  train 0.947
+  epoch   6  train 0.953
+  epoch   7  train 0.943
+  epoch   8  train 0.950
+  epoch   9  train 0.960
+  epoch  10  train 0.963
+  epoch  11  train 0.947
+  epoch  12  train 0.957
+  epoch  13  train 0.950
+  epoch  14  train 0.960
+  epoch  15  train 0.960
+saved -> D:\Kirchoffnet\kirchoff_claude\kfabric\results\twomoon_kfq_boundary.gif

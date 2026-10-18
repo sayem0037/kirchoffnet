@@ -1,0 +1,19 @@
+﻿GATE 4 -- four-quadrant cell: does the common mode really cancel?
+
+64 inputs -> 10 column pairs, dtheta=+-0.60, swing=0.40, margin=0.35
+
+the row common mode is SOLVED for, not asserted: layer l's rows are
+layer l-1's drains, so vcm and thbar are whatever the circuit picks
+
+ load_R     rd  vtail    vcm  thbar    signal bias/sig   sat  rail   affR2    w<0   rank
+--------------------------------------------------------------------------------------------------------
+    200   150k   0.78   1.06   1.94   0.00635     0.37  100%    0%  1.0000    51%   8.16  ok <--
+    400   150k   0.78   1.06   1.94   0.01271     0.37  100%    0%  1.0000    51%   8.16  ok <--
+    800   150k   0.78   1.06   1.94   0.00212     0.37    0%    0%  1.0000    52%   8.16  --
+
+BEST: load_R=400  rd=150k  vtail=0.78  vcm=1.064  thbar=1.945
+      bias/signal 0.37   (2T differential build measured ~100)
+      signal 0.01271 V, effective rank 8.16 of 10, 51% weights < 0
+      synapses saturated 100%, railed 0%
+
+GATE 4 PASSED -- the common mode cancels, so the neuron sees data rather than offset.

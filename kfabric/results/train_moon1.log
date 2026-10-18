@@ -1,0 +1,23 @@
+KFQ twomoon: 2 -> 8 -> 2  (198 devices, 86 trainable sources)
+vcm=1.000 V  thbar=1.93 V  swing=0.4 load_R=6k rd=200k vtail=0.85
+300 train / 300 test, 15 epochs, batch 10, lr 0.02
+7 workers, each with its own scratch netlist
+
+  epoch   1  loss 0.3890  train 0.803  test 0.900   [4.6 min]
+  epoch   2  loss 0.2402  train 0.900  test 0.903   [9.1 min]
+  epoch   3  loss 0.2303  train 0.897  test 0.917   [12.6 min]
+  epoch   4  loss 0.1946  train 0.917  test 0.937   [16.0 min]
+  epoch   5  loss 0.1544  train 0.947  test 0.950   [19.4 min]
+  epoch   6  loss 0.1437  train 0.953  test 0.957   [22.4 min]
+  epoch   7  loss 0.1387  train 0.943  test 0.947   [25.7 min]
+  epoch   8  loss 0.1387  train 0.950  test 0.960   [28.8 min]
+  epoch   9  loss 0.1382  train 0.960  test 0.953   [32.6 min]
+  epoch  10  loss 0.1391  train 0.963  test 0.943   [35.9 min]
+  epoch  11  loss 0.1391  train 0.947  test 0.950   [39.2 min]
+  epoch  12  loss 0.1308  train 0.957  test 0.953   [42.4 min]
+  epoch  13  loss 0.1328  train 0.950  test 0.953   [45.9 min]
+  epoch  14  loss 0.1287  train 0.960  test 0.950   [49.1 min]
+  epoch  15  loss 0.1333  train 0.960  test 0.957   [52.2 min]
+
+best test 0.960
+saved -> results/kfq_twomoon_moon1.json

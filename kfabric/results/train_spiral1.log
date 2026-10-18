@@ -1,0 +1,33 @@
+KFQ 2spirals: 2 -> 12 -> 2  (290 devices, 126 trainable sources)
+vcm=1.000 V  thbar=1.93 V  swing=0.4 load_R=6k rd=200k vtail=0.85
+300 train / 300 test, 25 epochs, batch 10, lr 0.02
+7 workers, each with its own scratch netlist
+
+  epoch   1  loss 0.6266  train 0.687  test 0.637   [7.6 min]
+  epoch   2  loss 0.5377  train 0.710  test 0.683   [13.6 min]
+  epoch   3  loss 0.5390  train 0.677  test 0.753   [19.6 min]
+  epoch   4  loss 0.4588  train 0.737  test 0.683   [25.5 min]
+  epoch   5  loss 0.4349  train 0.770  test 0.813   [31.8 min]
+  epoch   6  loss 0.4112  train 0.787  test 0.810   [37.9 min]
+  epoch   7  loss 0.4072  train 0.833  test 0.773   [43.9 min]
+  epoch   8  loss 0.3804  train 0.833  test 0.823   [49.8 min]
+  epoch   9  loss 0.3725  train 0.820  test 0.830   [54.2 min]
+  epoch  10  loss 0.3835  train 0.827  test 0.823   [60.6 min]
+  epoch  11  loss 0.3788  train 0.843  test 0.803   [68.0 min]
+  epoch  12  loss 0.3662  train 0.827  test 0.780   [75.4 min]
+  epoch  13  loss 0.3725  train 0.843  test 0.767   [82.7 min]
+  epoch  14  loss 0.3962  train 0.787  test 0.747   [89.8 min]
+  epoch  15  loss 0.3874  train 0.810  test 0.760   [97.0 min]
+  epoch  16  loss 0.3623  train 0.817  test 0.830   [104.1 min]
+  epoch  17  loss 0.3676  train 0.817  test 0.793   [111.1 min]
+  epoch  18  loss 0.3699  train 0.810  test 0.813   [118.2 min]
+  epoch  19  loss 0.3691  train 0.847  test 0.753   [125.3 min]
+  epoch  20  loss 0.3705  train 0.840  test 0.833   [132.5 min]
+  epoch  21  loss 0.3796  train 0.797  test 0.800   [139.8 min]
+  epoch  22  loss 0.3686  train 0.827  test 0.780   [147.1 min]
+  epoch  23  loss 0.3717  train 0.837  test 0.740   [154.6 min]
+  epoch  24  loss 0.3656  train 0.830  test 0.813   [162.5 min]
+  epoch  25  loss 0.3582  train 0.843  test 0.873   [170.1 min]
+
+best test 0.873
+saved -> results/kfq_2spirals_spiral1.json

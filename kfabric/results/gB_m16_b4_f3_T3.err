@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "D:\Kirchoffnet\kirchoff_claude\kfabric\gate_separability.py", line 224, in <module>
+    main(a)
+    ~~~~^^^
+  File "D:\Kirchoffnet\kirchoff_claude\kfabric\gate_separability.py", line 148, in main
+    r = evaluate(ds, a.m, a.k, a.T, a.banks, a.swing, a.n_train, a.n_test,
+                 seed=a.seed, edge_budget=a.edge_budget, verbose=a.verbose,
+                 neuron=a.neuron, fan_in=a.fan_in)
+  File "D:\Kirchoffnet\kirchoff_claude\kfabric\gate_separability.py", line 86, in evaluate
+    Ftr, vtr = bank_features(Str, tag=f"{dataset}_tr", **kw)
+               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Kirchoffnet\kirchoff_claude\kfabric\features.py", line 122, in bank_features
+    os.remove(nl)
+    ~~~~~~~~~^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'D:\\Kirchoffnet\\kirchoff_claude\\kfabric\\tmp_feat_twomoon_tr_b0.sp'

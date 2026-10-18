@@ -1,0 +1,6 @@
+﻿     eps     n  cos(pooled)  cos/sample min   med rel  med scaled  p90 scaled
+   0.5mV   240     1.000000        1.000000  2.09e-04    3.97e-05    1.42e-04
+     2mV   240     1.000000        1.000000  2.24e-04    4.41e-05    1.70e-04
+    10mV   240     0.999997        0.999890  6.20e-04    1.05e-04    1.30e-03
+
+GRAD CHECK PASSED  (274 s)  -> D:\Kirchoffnet\kirchoff_claude\kfabric\results\gradcheck_kfq_0.1f_50n.json

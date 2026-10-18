@@ -1,0 +1,11 @@
+twomoon: 9 frames from 41 checkpoints, 30x30 grid, T=4 -> 32400 SPICE solves
+   frame 1/9  epoch   0  test nan
+   frame 2/9  epoch   5  test 0.83
+   frame 3/9  epoch  10  test 0.75
+   frame 4/9  epoch  15  test 0.71
+   frame 5/9  epoch  20  test 0.71
+   frame 6/9  epoch  25  test 0.71
+   frame 7/9  epoch  30  test 0.71
+   frame 8/9  epoch  35  test 0.71
+   frame 9/9  epoch  40  test 0.71
+saved -> D:\Kirchoffnet\kirchoff_claude\kfabric\results\twomoon_krc_boundary.gif

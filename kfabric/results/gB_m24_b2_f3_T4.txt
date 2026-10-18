@@ -1,0 +1,13 @@
+GATE B -- does the ARC feature map separate the data?
+
+config: neuron=inverter, fan_in=3
+config: M=24 neurons, k=12 rails, T=4 steps, R=2 banks, swing=0.26
+        40 train / 24 test, features = M*T*R = 192
+
+dataset     raw tr  ARC tr  ARC te  raw ref  wide tgt   verdict
+---------------------------------------------------------------
+twomoon      0.955   1.000   0.792     0.93      1.00      PASS
+circle       0.700   1.000   0.958     0.70      1.00      PASS
+2spirals     0.625   0.925   0.833     0.62      0.97      PASS
+
+3/3 datasets reach the wide layer's separability.

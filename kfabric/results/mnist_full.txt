@@ -1,0 +1,9 @@
+mnist: 6000 train / 9786 test, 10 classes, T=4, M=48, banks=6, features=1152, workers=14
+
+calibrating 6 bank(s) on the TRAIN stream ...
+   bank 0: VDDN 0.89..1.60
+   bank 1: VDDN 0.77..1.58
+   bank 2: VDDN 0.79..1.57
+   bank 3: VDDN 0.70..1.57
+   bank 4: VDDN 0.89..1.62
+   bank 5: VDDN 0.98..1.70

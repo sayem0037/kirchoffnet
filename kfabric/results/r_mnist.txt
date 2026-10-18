@@ -1,0 +1,11 @@
+BENCHMARK | neuron=inverter fan_in=3 M=32 k=16 T=4 banks=1 swing=0.26
+
+mnist  (10 classes, 1000 train / 500 test, T=8, 256 features, 113.0 min)
+   model              train    test           95% CI
+   chance                     0.100
+   raw + linear       0.974   0.854   [0.820, 0.882]
+   ARC + linear       0.937   0.782   [0.744, 0.816]
+
+saved -> D:\Kirchoffnet\kirchoff_claude\kfabric\results\benchmark_mnist.json
+
+0/1 datasets reach >=0.90 test with ARC + linear.

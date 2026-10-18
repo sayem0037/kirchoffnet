@@ -1,0 +1,28 @@
+﻿CoreSpec[mnist]  input=(8,) classes=10
+  state nodes M      : 12
+  data rails  k      : 8   (chunk mode: flat)
+  steps       T      : 8
+  edges = params E   : 240  (shared across all 8 steps)
+  transistors        : 240
+  read taps          : ['n3', 'n4', 'n5', 'n6', 'n7', 'n8', 'n9', 'n10', 'n11', 'n12']
+  DACs (data rails)  : 8   + 12 S/H for state
+  SPICE problem size : 12 state nodes / 20 rails / 240 devices
+  --- reference ICCAD KirchhoffNet on the same task ---
+  nodes        834  ->      12   (      70x fewer)
+  params   920,272  ->     240   (    3834x fewer)
+  DACs         784  ->       8   (      98x fewer)
+
+stream: T=8 steps x k=8 rails  |  150 train / 60 test | 10 classes
+trainable: 240 edge thetas (shared across all 8 steps); read-out is FIXED (diagonal), not trained
+
+ep   1  loss  2.3528  train  0.07  test  0.10  max|dtheta| 0.2715  [  9.9 min]
+ep   2  loss  2.2991  train  0.14  test  0.22  max|dtheta| 0.5387  [ 20.4 min]
+ep   3  loss  2.2638  train  0.17  test  0.32  max|dtheta| 0.7963  [ 30.9 min]
+ep   4  loss  2.2321  train  0.23  test  0.28  max|dtheta| 1.0530  [ 41.5 min]
+ep   5  loss  2.2106  train  0.23  test  0.35  max|dtheta| 1.1405  [ 51.7 min]
+ep   6  loss  2.1835  train  0.25  test  0.38  max|dtheta| 1.3458  [ 61.6 min]
+ep   7  loss  2.1687  train  0.23  test  0.40  max|dtheta| 1.4000  [ 71.6 min]
+ep   8  loss  2.1553  train  0.28  test  0.40  max|dtheta| 1.4000  [ 81.6 min]
+
+mnist: best test acc 0.400 @ epoch 7  | total 81.6 min
+theta displacement: max 1.4000 V, mean 0.2576 V (the ring's was 0.0008 V after 90 epochs)

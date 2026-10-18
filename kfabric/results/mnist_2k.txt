@@ -1,0 +1,3 @@
+mnist: 3000 train / 2000 test, 10 classes, T=4, M=48, banks=6, features=1152, workers=13
+
+calibration: already present
