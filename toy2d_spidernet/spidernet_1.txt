@@ -1,0 +1,92 @@
+// Generated for: spectre
+// Generated on: Aug  3 11:28:45 2026
+// Design library name: Neur_Sam_350
+// Design cell name: kirchoff_spidernet
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters theta1=2 theta2=2.4 theta3=1.5 theta4=1 v1=3 v2=3.1 v3=2.9 \
+    v4=2.5
+include "/proj/cad/library/mosis/TSMC_PDK/t035mm_sp002k1_OA/tsmc35mm/../skill/../models/mm0355v.scs" section=tt
+include "/proj/cad/library/mosis/TSMC_PDK/t035mm_sp002k1_OA/tsmc35mm/../skill/../models/mm0355v.scs" section=tt_5v
+include "/proj/cad/library/mosis/TSMC_PDK/t035mm_sp002k1_OA/tsmc35mm/../skill/../models/mm0355v.scs" section=bip
+include "/proj/cad/library/mosis/TSMC_PDK/t035mm_sp002k1_OA/tsmc35mm/../skill/../models/mm0355v.scs" section=dio
+include "/proj/cad/library/mosis/TSMC_PDK/t035mm_sp002k1_OA/tsmc35mm/../skill/../models/mm0355v.scs" section=res
+include "/proj/cad/library/mosis/TSMC_PDK/t035mm_sp002k1_OA/tsmc35mm/../skill/../models/mm0355v.scs" section=pip
+
+// Library name: Neur_Sam_350
+// Cell name: kirchoff_spidernet
+// View name: schematic
+M15 (v2 theta16 net3 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M14 (v3 theta15 net3 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M13 (v4 theta14 net3 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M12 (v1 theta13 net3 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M11 (v1 theta12 net2 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M10 (v4 theta11 net2 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M9 (v3 theta10 net2 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M8 (v2 theta9 net2 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M7 (v2 theta6 net4 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M6 (v3 theta7 net4 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M5 (v4 theta8 net4 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M4 (v1 theta5 net4 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M3 (v3 theta3 net1 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M2 (v4 theta4 net1 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M1 (v1 theta1 net1 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+M0 (v2 theta2 net1 0) nch l=350n w=2u m=1 ad=1.7e-12 as=1.7e-12 pd=5.7u \
+        ps=5.7u nrd=0.25 nrs=0.25
+V9 (v1 0) vsource dc=v1 type=dc
+V8 (v2 0) vsource dc=v2 type=dc
+V7 (v3 0) vsource dc=v3 type=dc
+V6 (v4 0) vsource dc=v4 type=dc
+V5 (theta1 0) vsource dc=theta1 type=dc
+V4 (theta2 0) vsource dc=theta3 type=dc
+V3 (theta3 0) vsource dc=theta2 type=dc
+V2 (theta4 0) vsource dc=theta4 type=dc
+V10 (theta5 0) vsource dc=theta5 type=dc
+V11 (theta6 0) vsource dc=theta6 type=dc
+V12 (theta7 0) vsource dc=theta7 type=dc
+V13 (theta8 0) vsource dc=theta8 type=dc
+V14 (theta9 0) vsource dc=theta9 type=dc
+V15 (theta10 0) vsource dc=theta10 type=dc
+V16 (theta11 0) vsource dc=theta11 type=dc
+V17 (theta12 0) vsource dc=theta12 type=dc
+V18 (theta13 0) vsource dc=theta13 type=dc
+V19 (theta14 0) vsource dc=theta14 type=dc
+V20 (theta15 0) vsource dc=theta15 type=dc
+V21 (theta16 0) vsource dc=theta16 type=dc
+C3 (net3 0) capacitor c=100.0a
+C2 (net2 0) capacitor c=100.0a
+C1 (net4 0) capacitor c=100.0a
+C0 (net1 0) capacitor c=100.0a
+ic net1=.5 
+simulatorOptions options psfversion="1.4.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=1u write="spectre.ic" writefinal="spectre.fc" \
+    annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+dc dc param=theta1 start=-5 stop=5 write="spectre.dc" oppoint=rawfile \
+    maxiters=150 maxsteps=10000 annotate=status 
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub

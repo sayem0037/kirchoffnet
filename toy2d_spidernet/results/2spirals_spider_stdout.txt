@@ -1,0 +1,16 @@
+﻿Spider | 2spirals | 40 train / 24 test | 4 rails x 4 nodes | trainable thetas: 16
+  Ep      loss    train    test      lr_c
+   1    0.7533     0.33    0.29  1.00e-02
+  10    0.6609     0.65    0.75  1.00e-02
+  20    0.6197     0.65    0.75  1.00e-02
+  30    0.6135     0.65    0.75  1.00e-02
+  40    0.6131     0.65    0.71  1.00e-02
+  50    0.6122     0.65    0.75  1.00e-02
+  60    0.6111     0.65    0.75  1.00e-02
+  70    0.6100     0.65    0.75  1.00e-02
+  80    0.6087     0.65    0.75  1.00e-02
+  90    0.6080     0.65    0.75  1.00e-02
+
+Spider 2spirals done. Best test acc=0.79 @ep42
+Saved -> results/2spirals_spider_sensitivities.csv (40 samples x 4 nodes x 16 params)
+Saved -> results/2spirals_spider_curve.png

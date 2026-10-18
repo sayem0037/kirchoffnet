@@ -1,0 +1,16 @@
+﻿Spider | circle | 40 train / 24 test | 4 rails x 4 nodes | trainable thetas: 16
+  Ep      loss    train    test      lr_c
+   1    0.6092     0.70    0.62  1.00e-02
+  10    0.5229     0.78    0.62  1.00e-02
+  20    0.4181     0.82    0.62  1.00e-02
+  30    0.3313     0.95    0.79  1.00e-02
+  40    0.2506     0.95    0.96  1.00e-02
+  50    0.1920     0.97    0.96  1.00e-02
+  60    0.1527     1.00    1.00  1.00e-02
+  70    0.1168     1.00    1.00  1.00e-02
+  80    0.0821     1.00    1.00  1.00e-02
+  90    0.0697     1.00    1.00  2.80e-04
+
+Spider circle done. Best test acc=1.00 @ep52
+Saved -> results/circle_spider_sensitivities.csv (40 samples x 4 nodes x 16 params)
+Saved -> results/circle_spider_curve.png
