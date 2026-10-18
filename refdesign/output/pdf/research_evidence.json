@@ -1,0 +1,389 @@
+{
+  "date": "2026-10-12",
+  "report": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\output\\pdf\\analog_digital_ring_research.pdf",
+  "confirmed_current_design": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff",
+  "research_manuscript_sha256": "40dcd00cdbd03f20650a7aad5c912a8fc25bb136732416c4277669ab58e48fd3",
+  "source_hashes": [
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\xbar1t1r_device.py",
+      "sha256": "c241ffce5468ce28b88396ec58e84894c3f21344d8efa1a737754cfbee576026"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\xbar1t1r_netlist.py",
+      "sha256": "547d9732935793f96db8189d350b05712e932d3f1e7c147794e0391678154e2b"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\xbar1t1r_train.py",
+      "sha256": "88c7ab4c4d2a7715806850cf8313dc75bdcfca24697440f7a48e1fab3ebcb8dc"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\digital_train.py",
+      "sha256": "f96a5bc2ad8a1bd82076c368c2e694ae6cf7d6e377846f87a684915623f1f318"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\digital_netlist.py",
+      "sha256": "a7112367af0c44caf5c82ae0aeeb61bb96e45cf2f6a6ff30fa01a88979d71ae6"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\digital_verify.py",
+      "sha256": "f694023628a4c3bb15b8b5991b6dbad5662e569d7c40d179414a79a2d7a43719"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\verify_digital.log",
+      "sha256": "d52063d7b0d66e88a9694c2ed19c50d752ce6f195d6bb22d4596d1edb6a64c5f"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\kfabric\\netlist_kfq.py",
+      "sha256": "de23b50382a92eff0371fe13c48ddb9ba129e4f86a7b71a416b6f11280f9ccf3"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\kfabric\\netlist_kdn.py",
+      "sha256": "94ca97cf91b6416a739ae0e0abd0998b01af6c6469097fc7758f361e0f0e1194"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\kfabric\\train_kfq.py",
+      "sha256": "8e1899d7bca9ff55afb018412d30f6993d25fd3ca3024d7b266700a6be179e2d"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\kfabric\\kfq_spec.py",
+      "sha256": "40c8bd1d0af2c83caa2f8adb41bfb4ab9606b016b3981ed0d2d1ea0b5ce1997f"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\kfabric\\ARCHITECTURE.md",
+      "sha256": "57bc860e0a190f3d2679a80496846c48728d9f24372495b58371e77060ec0eac"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\kfabric\\simulator_api.py",
+      "sha256": "dfbc8c507d57f37b063e0ad881a4d53c8955448788967d0f51da13ec496c8703"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\netlist_ring.py",
+      "sha256": "e5dec4fdc0396a0673dfb2251fbb1d82a4888879dd410ddf1b55f85541b27407"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\train_ring.py",
+      "sha256": "13c2b51a10f879a2060de94ddad8d66e19fbd249550d54b34e2de4e05e557788"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\dataset.py",
+      "sha256": "0dc89a80177d1658bd518095eefb885eac395ba720c6f467fc61013c8ae94c7a"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\ring_common.py",
+      "sha256": "261ddf7e3b47554d03c1f8cd0fa5afa0b12d0f81e8756e809dd1b2bad8c4fb82"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\diag_ring.py",
+      "sha256": "926b8423f35aa2c1f8540783e38c9913183462ae0fdb4e09e9c74422800f50bd"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\animate_ring.py",
+      "sha256": "5bef4b72594960f9a4dde383212d53fb75561ca11a6ce5984648be4ad67116d8"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\README.md",
+      "sha256": "1413ab3ef28207be6d654a0e64eb3e05e0a34b7586bb93f955204e5e755f4bb9"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\compare\\tech.py",
+      "sha256": "5c98ac8ed53d264efc9da065f2f3632345b010c9657c6ce40e941b3a7c840348"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\compare\\metrics.py",
+      "sha256": "271d04e014d3b92c7e99ff1c9105e6e8575440e8c080d5d7e093af3b2292c613"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\compare\\measure_existing.py",
+      "sha256": "70541732078cd6ef26cb25fb41cb35e1b7689d043523bd06ead2cd39dad030d6"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\2spirals_ring_anim_stdout.txt",
+      "sha256": "df12cfdf9e82c81f7e8d0c011f45d4d0b5c64c0b9e3cf936dbf487ae6200af44"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\2spirals_ring_best.json",
+      "sha256": "f26297960734b76e667c4664379d6428c2aace813666057be3b79332c6f7cab1"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\2spirals_ring_log.csv",
+      "sha256": "b0b2b531de36d255d28cbb1b6749acb1b865e528abade2714715603db54e4ad4"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\2spirals_ring_stdout.txt",
+      "sha256": "99dd4deb4d3616423230a3aa02761e8774c5d458a1f3cdb610bd91ddb781c2f7"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\circle_ring_anim_stdout.txt",
+      "sha256": "23413ab93f6bf6a39e404f378c59c3efe4186b28688b7dfb8c177f6212c8571a"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\circle_ring_best.json",
+      "sha256": "fb58551d41029afe2118d2c211035f2e2b74884584d68c1069af582e8e6dcbaf"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\circle_ring_log.csv",
+      "sha256": "4b58cbb2bdaf90b3649bad3bcbf1f349770bd113eb40bdd1f4bf025cd000a62c"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\circle_ring_stdout.txt",
+      "sha256": "2be4fec3b0bdb92228dc02e5f103594cb6d500b32fe8f54f32e8f2c550c99234"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\twomoon_ring_anim_stdout.txt",
+      "sha256": "f302636ea61a6ac76860e1eac72b924422bf1e31cf42dd436f4ff8bab161649c"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\twomoon_ring_best.json",
+      "sha256": "7d186e3272cdb1b20367460bd9ddc85c809f2fcd0b7c79b17837471c5ae52d70"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\twomoon_ring_log.csv",
+      "sha256": "d42824caf9b1d6219119b60a19d7b877a0907ca64b3f020abbf8b77b537551e2"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\twomoon_ring_sensitivities.csv",
+      "sha256": "205dbddfafa41dae90a0d9400b6491a50e8e7fedd83a1cfec4ede50dfa461aca"
+    },
+    {
+      "path": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\twomoon_ring_stdout.txt",
+      "sha256": "de7c911c60573e014143bfe1eaa9d976ed1bcd0977312ed9c93bdab05ae54a78"
+    },
+    {
+      "path": "D:\\Simulator\\circuit_simulator with level3\\src\\models\\mosfet_level1_model.py",
+      "sha256": "e87614ba109dc6f51509ff36571c6167b167f946ee2a46fd48ec3178009353a1"
+    }
+  ],
+  "historical_runs": [
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\results\\digital_2spirals_run_meta.json",
+      "sizes": [
+        2,
+        8,
+        2
+      ],
+      "n_train": 120,
+      "n_test": 120,
+      "seed": 0,
+      "rule": "QAT + straight-through estimator",
+      "epochs": 60,
+      "final": 0.7833333333333333,
+      "best": 0.8166666666666667,
+      "actual_best_epoch": 42,
+      "last10_mean": 0.78
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\results\\digital_circle_run_meta.json",
+      "sizes": [
+        2,
+        8,
+        2
+      ],
+      "n_train": 120,
+      "n_test": 120,
+      "seed": 0,
+      "rule": "QAT + straight-through estimator",
+      "epochs": 60,
+      "final": 1.0,
+      "best": 1.0,
+      "actual_best_epoch": 6,
+      "last10_mean": 1.0
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\results\\digital_twomoon_run_meta.json",
+      "sizes": [
+        2,
+        8,
+        2
+      ],
+      "n_train": 120,
+      "n_test": 120,
+      "seed": 0,
+      "rule": "QAT + straight-through estimator",
+      "epochs": 60,
+      "final": 1.0,
+      "best": 1.0,
+      "actual_best_epoch": 18,
+      "last10_mean": 1.0
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\results\\xbar_2spirals_fix_meta.json",
+      "sizes": [
+        2,
+        16,
+        2
+      ],
+      "n_train": 120,
+      "n_test": 120,
+      "seed": 0,
+      "rule": "writeverify",
+      "epochs": 80,
+      "final": 0.9083333333333333,
+      "best": 0.9333333333333333,
+      "actual_best_epoch": 74,
+      "last10_mean": 0.9108333333333334
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\results\\xbar_circle_fix_meta.json",
+      "sizes": [
+        2,
+        16,
+        2
+      ],
+      "n_train": 120,
+      "n_test": 120,
+      "seed": 0,
+      "rule": "writeverify",
+      "epochs": 80,
+      "final": 0.975,
+      "best": 0.975,
+      "actual_best_epoch": 8,
+      "last10_mean": 0.975
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\results\\xbar_twomoon_fix_meta.json",
+      "sizes": [
+        2,
+        16,
+        2
+      ],
+      "n_train": 120,
+      "n_test": 120,
+      "seed": 0,
+      "rule": "writeverify",
+      "epochs": 80,
+      "final": 0.975,
+      "best": 1.0,
+      "actual_best_epoch": 3,
+      "last10_mean": 0.975
+    }
+  ],
+  "ring_historical_artifacts": [
+    {
+      "dataset": "twomoon",
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\twomoon_ring_best.json",
+      "checkpoint_epoch": 7,
+      "stored_test_acc": 0.875,
+      "stored_train_acc": 1.0,
+      "nominal_n_train": 40,
+      "nominal_n_test": 24,
+      "valid_test_count": "not saved",
+      "metric_warning": "accuracy measured before circuit step; stored circuit may be post-step",
+      "animation_source": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\twomoon_ring_anim_stdout.txt",
+      "animation_warning": "new readout fitted to combined train and test labels; circle falls back to frozen circ_init"
+    },
+    {
+      "dataset": "circle",
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\circle_ring_best.json",
+      "checkpoint_epoch": 14,
+      "stored_test_acc": 1.0,
+      "stored_train_acc": 1.0,
+      "nominal_n_train": 40,
+      "nominal_n_test": 24,
+      "valid_test_count": "not saved",
+      "metric_warning": "accuracy measured before circuit step; stored circuit may be post-step",
+      "animation_source": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\circle_ring_anim_stdout.txt",
+      "animation_warning": "new readout fitted to combined train and test labels; circle falls back to frozen circ_init"
+    },
+    {
+      "dataset": "2spirals",
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\2spirals_ring_best.json",
+      "checkpoint_epoch": 40,
+      "stored_test_acc": 0.7916666666666666,
+      "stored_train_acc": 0.7,
+      "nominal_n_train": 40,
+      "nominal_n_test": 24,
+      "valid_test_count": "not saved",
+      "metric_warning": "accuracy measured before circuit step; stored circuit may be post-step",
+      "animation_source": "D:\\Kirchoffnet\\kirchoff_claude\\toy2d_serial_diff\\results\\2spirals_ring_anim_stdout.txt",
+      "animation_warning": "new readout fitted to combined train and test labels; circle falls back to frozen circ_init"
+    }
+  ],
+  "trained_deck_counts": [
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_2spirals_L1.sp",
+      "sha256": "e1f669d26b9cd164f852c6e1afe7bd304b94544f97ca43a2df0cc96daf7651ad",
+      "counts": {
+        "M": 320,
+        "R": 128,
+        "C": 32,
+        "V": 9
+      }
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_2spirals_L2.sp",
+      "sha256": "1aa7cd8fd0e7891bac092660e615bd23af3e5d4a3e8b0890cc9ea7afff9bad59",
+      "counts": {
+        "M": 96,
+        "R": 72,
+        "C": 4,
+        "V": 37
+      }
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_circle_L1.sp",
+      "sha256": "dc2efb4ec22a4c95da25eddeca8ee005a1a4f8df9bd82bfe1b5903c14f95e282",
+      "counts": {
+        "M": 320,
+        "R": 128,
+        "C": 32,
+        "V": 9
+      }
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_circle_L2.sp",
+      "sha256": "09f548ed3a3e2848e655fa83c917d6ff72ab00f7ac2c358c24a4a3555f335daa",
+      "counts": {
+        "M": 96,
+        "R": 72,
+        "C": 4,
+        "V": 37
+      }
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_twomoon_L1.sp",
+      "sha256": "32211f56430dbb5d00edd2cc18b10830896cee62247a64312ec441458b11dddb",
+      "counts": {
+        "M": 320,
+        "R": 128,
+        "C": 32,
+        "V": 9
+      }
+    },
+    {
+      "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_twomoon_L2.sp",
+      "sha256": "eab7d1b23228e4f0f2f3a518d7c9181daceeb712f06a7551b5ab423d09955b54",
+      "counts": {
+        "M": 96,
+        "R": 72,
+        "C": 4,
+        "V": 37
+      }
+    }
+  ],
+  "scope": "Read-only code/data audit and targeted numerical/Boolean checks; no new training, full SPICE benchmark, or hardware measurements.",
+  "level1_direct_model_smoke_check": {
+    "vgs": 1.2,
+    "vds": 2.0,
+    "source_body_voltage_cases": [
+      0,
+      1.5
+    ],
+    "gamma_cases": [
+      0,
+      1
+    ],
+    "phi_cases": [
+      0.7,
+      0.3
+    ],
+    "lambda_cases": [
+      0,
+      0.5
+    ],
+    "returned_model_results_identical": true,
+    "gds": 1e-12,
+    "gmb": 0,
+    "all_terminal_charges": 0,
+    "scope": "Direct compute() test, not a transistor-network simulation"
+  }
+}

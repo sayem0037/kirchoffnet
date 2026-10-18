@@ -1,0 +1,27 @@
+const {chromium}=require('C:/Users/axs200299/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const path=require('path');
+(async()=>{
+  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});
+  const page=await browser.newPage({viewport:{width:850,height:680}});
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('file:///'+path.resolve('tmp/kfabric-cell-preview.html').replaceAll('\\','/'));
+  const frame=page.frameLocator('iframe');
+  await frame.locator('#kfq-cell-result').waitFor();
+  const wide=await frame.locator('#kfq-cell-result').innerText();
+  await frame.locator('#kfq-x').evaluate(e=>{e.value='-0.5';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  const negative=await frame.locator('#kfq-cell-result').innerText();
+  await frame.locator('#kfq-weight').evaluate(e=>{e.value='-0.20';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  const both=await frame.locator('#kfq-cell-result').innerText();
+  await frame.locator('#kfq-weight').evaluate(e=>{e.value='0';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  const zero=await frame.locator('#kfq-cell-result').innerText();
+  await frame.locator('#kfq-x').evaluate(e=>{e.value='0.5';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  await frame.locator('#kfq-weight').evaluate(e=>{e.value='0.20';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  await page.screenshot({path:'tmp/kfabric-cell-wide.png',fullPage:true});
+  await page.setViewportSize({width:360,height:790});
+  await page.waitForTimeout(200);
+  await page.screenshot({path:'tmp/kfabric-cell-narrow.png',fullPage:true});
+  const layout=await frame.locator('#kfq-signed-cell').evaluate(e=>({width:e.clientWidth,scrollWidth:e.scrollWidth,svgTextBounds:[...e.querySelectorAll('svg text')].map(t=>({text:t.textContent,x:t.getBBox().x,right:t.getBBox().x+t.getBBox().width})).filter(x=>x.x<0||x.right>e.querySelector('svg').viewBox.baseVal.width)}));
+  console.log(JSON.stringify({wide,negative,both,zero,errors,layout},null,2));
+  if(!wide.includes('+0.1152')||!negative.includes('-0.1152')||!both.includes('+0.1152')||!zero.includes('+0.0000')||errors.length||layout.svgTextBounds.length)process.exitCode=1;
+  await browser.close();
+})();

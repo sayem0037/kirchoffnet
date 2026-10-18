@@ -1,0 +1,236 @@
+* 1T1R RESISTIVE CROSSBAR LAYER -- auto-generated
+* 17 rows x 2 column pairs | 168 devices | 68 cells
+* One weight = two 1T1R cells into a column pair:
+*     col+ - col-  =  -Rf * sum_i (G+ - G-) * (v_i - vref)
+* Each cell is a select NMOS in series with the programmed resistor, so an
+* unselected row contributes no sneak current.
+* readout: 2-stage op amp
+
+.MODEL NCH NMOS LEVEL=1 VTO=0.531 KP=120u LAMBDA=0.02 GAMMA=0.4 PHI=0.7
+.MODEL PCH PMOS LEVEL=1 VTO=-0.71 KP=40u  LAMBDA=0.02 GAMMA=0.4 PHI=0.7
+
+V0 vdd 0 DC 3.3
+VREF vref 0 DC 1.000000
+VOTA g_vota 0 DC 0.800000
+
+* ---- row drivers (the DACs): vref 1.0 V +- 0.3 V ----
+VR1 r1 0 DC 1.300000
+VR2 r2 0 DC 0.792617
+VR3 r3 0 DC 1.028262
+VR4 r4 0 DC 1.191598
+VR5 r5 0 DC 1.290756
+VR6 r6 0 DC 1.082833
+VR7 r7 0 DC 0.705279
+VR8 r8 0 DC 1.056028
+VR9 r9 0 DC 0.700083
+VR10 r10 0 DC 0.826208
+VR11 r11 0 DC 1.283894
+VR12 r12 0 DC 1.290756
+VR13 r13 0 DC 0.700147
+VR14 r14 0 DC 0.808402
+VR15 r15 0 DC 1.299997
+VR16 r16 0 DC 1.191598
+VR17 r17 0 DC 1.299991
+
+* ---- word lines: asserted rows take part in the read ----
+VWL1 wl1 0 DC 3.300000
+VWL2 wl2 0 DC 3.300000
+VWL3 wl3 0 DC 3.300000
+VWL4 wl4 0 DC 3.300000
+VWL5 wl5 0 DC 3.300000
+VWL6 wl6 0 DC 3.300000
+VWL7 wl7 0 DC 3.300000
+VWL8 wl8 0 DC 3.300000
+VWL9 wl9 0 DC 3.300000
+VWL10 wl10 0 DC 3.300000
+VWL11 wl11 0 DC 3.300000
+VWL12 wl12 0 DC 3.300000
+VWL13 wl13 0 DC 3.300000
+VWL14 wl14 0 DC 3.300000
+VWL15 wl15 0 DC 3.300000
+VWL16 wl16 0 DC 3.300000
+VWL17 wl17 0 DC 3.300000
+
+* ---- the array: 2 cells per weight, 1T1R each ----
+* column pair cp1/cn1
+MSP1_1 r1 wl1 np1_1 0 NCH L=1u W=20u
+RCP1_1 np1_1 cp1 1.523740e+04
+MSN1_1 r1 wl1 nm1_1 0 NCH L=1u W=20u
+RCN1_1 nm1_1 cn1 1.794758e+04
+MSP2_1 r2 wl2 np2_1 0 NCH L=1u W=20u
+RCP2_1 np2_1 cp1 2.402415e+04
+MSN2_1 r2 wl2 nm2_1 0 NCH L=1u W=20u
+RCN2_1 nm2_1 cn1 1.895436e+04
+MSP3_1 r3 wl3 np3_1 0 NCH L=1u W=20u
+RCP3_1 np3_1 cp1 2.213891e+04
+MSN3_1 r3 wl3 nm3_1 0 NCH L=1u W=20u
+RCN3_1 nm3_1 cn1 2.803320e+04
+MSP4_1 r4 wl4 np4_1 0 NCH L=1u W=20u
+RCP4_1 np4_1 cp1 1.601274e+04
+MSN4_1 r4 wl4 nm4_1 0 NCH L=1u W=20u
+RCN4_1 nm4_1 cn1 2.149970e+04
+MSP5_1 r5 wl5 np5_1 0 NCH L=1u W=20u
+RCP5_1 np5_1 cp1 1.781595e+04
+MSN5_1 r5 wl5 nm5_1 0 NCH L=1u W=20u
+RCN5_1 nm5_1 cn1 3.848490e+04
+MSP6_1 r6 wl6 np6_1 0 NCH L=1u W=20u
+RCP6_1 np6_1 cp1 1.894103e+04
+MSN6_1 r6 wl6 nm6_1 0 NCH L=1u W=20u
+RCN6_1 nm6_1 cn1 7.357999e+04
+MSP7_1 r7 wl7 np7_1 0 NCH L=1u W=20u
+RCP7_1 np7_1 cp1 1.047606e+04
+MSN7_1 r7 wl7 nm7_1 0 NCH L=1u W=20u
+RCN7_1 nm7_1 cn1 7.379922e+05
+MSP8_1 r8 wl8 np8_1 0 NCH L=1u W=20u
+RCP8_1 np8_1 cp1 1.429647e+04
+MSN8_1 r8 wl8 nm8_1 0 NCH L=1u W=20u
+RCN8_1 nm8_1 cn1 2.148480e+04
+MSP9_1 r9 wl9 np9_1 0 NCH L=1u W=20u
+RCP9_1 np9_1 cp1 2.922011e+04
+MSN9_1 r9 wl9 nm9_1 0 NCH L=1u W=20u
+RCN9_1 nm9_1 cn1 1.389425e+04
+MSP10_1 r10 wl10 np10_1 0 NCH L=1u W=20u
+RCP10_1 np10_1 cp1 2.309755e+04
+MSN10_1 r10 wl10 nm10_1 0 NCH L=1u W=20u
+RCN10_1 nm10_1 cn1 1.308423e+04
+MSP11_1 r11 wl11 np11_1 0 NCH L=1u W=20u
+RCP11_1 np11_1 cp1 2.079330e+04
+MSN11_1 r11 wl11 nm11_1 0 NCH L=1u W=20u
+RCN11_1 nm11_1 cn1 2.400479e+04
+MSP12_1 r12 wl12 np12_1 0 NCH L=1u W=20u
+RCP12_1 np12_1 cp1 3.593289e+04
+MSN12_1 r12 wl12 nm12_1 0 NCH L=1u W=20u
+RCN12_1 nm12_1 cn1 1.491743e+04
+MSP13_1 r13 wl13 np13_1 0 NCH L=1u W=20u
+RCP13_1 np13_1 cp1 3.092146e+04
+MSN13_1 r13 wl13 nm13_1 0 NCH L=1u W=20u
+RCN13_1 nm13_1 cn1 1.422530e+04
+MSP14_1 r14 wl14 np14_1 0 NCH L=1u W=20u
+RCP14_1 np14_1 cp1 4.376739e+04
+MSN14_1 r14 wl14 nm14_1 0 NCH L=1u W=20u
+RCN14_1 nm14_1 cn1 1.254805e+04
+MSP15_1 r15 wl15 np15_1 0 NCH L=1u W=20u
+RCP15_1 np15_1 cp1 1.398072e+04
+MSN15_1 r15 wl15 nm15_1 0 NCH L=1u W=20u
+RCN15_1 nm15_1 cn1 2.801539e+04
+MSP16_1 r16 wl16 np16_1 0 NCH L=1u W=20u
+RCP16_1 np16_1 cp1 1.650235e+04
+MSN16_1 r16 wl16 nm16_1 0 NCH L=1u W=20u
+RCN16_1 nm16_1 cn1 3.838651e+04
+MSP17_1 r17 wl17 np17_1 0 NCH L=1u W=20u
+RCP17_1 np17_1 cp1 1.521819e+04
+MSN17_1 r17 wl17 nm17_1 0 NCH L=1u W=20u
+RCN17_1 nm17_1 cn1 4.666256e+04
+MPP11 P1_m P1_m vdd vdd PCH L=1u W=16u
+MPP12 P1_o1 P1_m vdd vdd PCH L=1u W=16u
+MNP11 P1_m cp1 sp1 0 NCH L=1u W=8u
+MNP12 P1_o1 vref sp1 0 NCH L=1u W=8u
+MTP1 sp1 g_vota 0 0 NCH L=1u W=8u
+MPP13 op1 P1_o1 vdd vdd PCH L=1u W=160u
+MNP13 op1 g_vota 0 0 NCH L=1u W=40u
+MPN11 N1_m N1_m vdd vdd PCH L=1u W=16u
+MPN12 N1_o1 N1_m vdd vdd PCH L=1u W=16u
+MNN11 N1_m cn1 sn1 0 NCH L=1u W=8u
+MNN12 N1_o1 vref sn1 0 NCH L=1u W=8u
+MTN1 sn1 g_vota 0 0 NCH L=1u W=8u
+MPN13 on1 N1_o1 vdd vdd PCH L=1u W=160u
+MNN13 on1 g_vota 0 0 NCH L=1u W=40u
+RFP1 op1 cp1 2.000000e+03
+RFN1 on1 cn1 2.000000e+03
+CP1 cp1 0 10f
+CN1 cn1 0 10f
+
+* column pair cp2/cn2
+MSP1_2 r1 wl1 np1_2 0 NCH L=1u W=20u
+RCP1_2 np1_2 cp2 2.229453e+04
+MSN1_2 r1 wl1 nm1_2 0 NCH L=1u W=20u
+RCN1_2 nm1_2 cn2 1.831690e+04
+MSP2_2 r2 wl2 np2_2 0 NCH L=1u W=20u
+RCP2_2 np2_2 cp2 1.360145e+04
+MSN2_2 r2 wl2 nm2_2 0 NCH L=1u W=20u
+RCN2_2 nm2_2 cn2 2.945334e+04
+MSP3_2 r3 wl3 np3_2 0 NCH L=1u W=20u
+RCP3_2 np3_2 cp2 2.637521e+04
+MSN3_2 r3 wl3 nm3_2 0 NCH L=1u W=20u
+RCN3_2 nm3_2 cn2 2.299405e+04
+MSP4_2 r4 wl4 np4_2 0 NCH L=1u W=20u
+RCP4_2 np4_2 cp2 2.485296e+04
+MSN4_2 r4 wl4 nm4_2 0 NCH L=1u W=20u
+RCN4_2 nm4_2 cn2 1.209840e+04
+MSP5_2 r5 wl5 np5_2 0 NCH L=1u W=20u
+RCP5_2 np5_2 cp2 3.082157e+04
+MSN5_2 r5 wl5 nm5_2 0 NCH L=1u W=20u
+RCN5_2 nm5_2 cn2 1.958847e+04
+MSP6_2 r6 wl6 np6_2 0 NCH L=1u W=20u
+RCP6_2 np6_2 cp2 2.568134e+04
+MSN6_2 r6 wl6 nm6_2 0 NCH L=1u W=20u
+RCN6_2 nm6_2 cn2 1.684361e+04
+MSP7_2 r7 wl7 np7_2 0 NCH L=1u W=20u
+RCP7_2 np7_2 cp2 1.128114e+05
+MSN7_2 r7 wl7 nm7_2 0 NCH L=1u W=20u
+RCN7_2 nm7_2 cn2 1.340257e+04
+MSP8_2 r8 wl8 np8_2 0 NCH L=1u W=20u
+RCP8_2 np8_2 cp2 5.022075e+04
+MSN8_2 r8 wl8 nm8_2 0 NCH L=1u W=20u
+RCN8_2 nm8_2 cn2 1.569114e+04
+MSP9_2 r9 wl9 np9_2 0 NCH L=1u W=20u
+RCP9_2 np9_2 cp2 1.310157e+04
+MSN9_2 r9 wl9 nm9_2 0 NCH L=1u W=20u
+RCN9_2 nm9_2 cn2 3.143056e+04
+MSP10_2 r10 wl10 np10_2 0 NCH L=1u W=20u
+RCP10_2 np10_2 cp2 1.231644e+04
+MSN10_2 r10 wl10 nm10_2 0 NCH L=1u W=20u
+RCN10_2 nm10_2 cn2 2.222695e+04
+MSP11_2 r11 wl11 np11_2 0 NCH L=1u W=20u
+RCP11_2 np11_2 cp2 1.955344e+04
+MSN11_2 r11 wl11 nm11_2 0 NCH L=1u W=20u
+RCN11_2 nm11_2 cn2 1.230908e+04
+MSP12_2 r12 wl12 np12_2 0 NCH L=1u W=20u
+RCP12_2 np12_2 cp2 1.312604e+04
+MSN12_2 r12 wl12 nm12_2 0 NCH L=1u W=20u
+RCN12_2 nm12_2 cn2 5.503214e+04
+MSP13_2 r13 wl13 np13_2 0 NCH L=1u W=20u
+RCP13_2 np13_2 cp2 1.601683e+04
+MSN13_2 r13 wl13 nm13_2 0 NCH L=1u W=20u
+RCN13_2 nm13_2 cn2 3.084401e+04
+MSP14_2 r14 wl14 np14_2 0 NCH L=1u W=20u
+RCP14_2 np14_2 cp2 1.000000e+04
+MSN14_2 r14 wl14 nm14_2 0 NCH L=1u W=20u
+RCN14_2 nm14_2 cn2 4.392702e+04
+MSP15_2 r15 wl15 np15_2 0 NCH L=1u W=20u
+RCP15_2 np15_2 cp2 1.364733e+05
+MSN15_2 r15 wl15 nm15_2 0 NCH L=1u W=20u
+RCN15_2 nm15_2 cn2 1.212077e+04
+MSP16_2 r16 wl16 np16_2 0 NCH L=1u W=20u
+RCP16_2 np16_2 cp2 2.486064e+04
+MSN16_2 r16 wl16 nm16_2 0 NCH L=1u W=20u
+RCN16_2 nm16_2 cn2 1.428221e+04
+MSP17_2 r17 wl17 np17_2 0 NCH L=1u W=20u
+RCP17_2 np17_2 cp2 2.314074e+04
+MSN17_2 r17 wl17 nm17_2 0 NCH L=1u W=20u
+RCN17_2 nm17_2 cn2 1.069059e+04
+MPP21 P2_m P2_m vdd vdd PCH L=1u W=16u
+MPP22 P2_o1 P2_m vdd vdd PCH L=1u W=16u
+MNP21 P2_m cp2 sp2 0 NCH L=1u W=8u
+MNP22 P2_o1 vref sp2 0 NCH L=1u W=8u
+MTP2 sp2 g_vota 0 0 NCH L=1u W=8u
+MPP23 op2 P2_o1 vdd vdd PCH L=1u W=160u
+MNP23 op2 g_vota 0 0 NCH L=1u W=40u
+MPN21 N2_m N2_m vdd vdd PCH L=1u W=16u
+MPN22 N2_o1 N2_m vdd vdd PCH L=1u W=16u
+MNN21 N2_m cn2 sn2 0 NCH L=1u W=8u
+MNN22 N2_o1 vref sn2 0 NCH L=1u W=8u
+MTN2 sn2 g_vota 0 0 NCH L=1u W=8u
+MPN23 on2 N2_o1 vdd vdd PCH L=1u W=160u
+MNN23 on2 g_vota 0 0 NCH L=1u W=40u
+RFP2 op2 cp2 2.000000e+03
+RFN2 on2 cn2 2.000000e+03
+CP2 cp2 0 10f
+CN2 cn2 0 10f
+
+* solver seed; the data is in the row drivers
+.IC V(cp1)=1.0000 V(cn1)=1.0000 V(op1)=1.0000 V(on1)=1.0000 V(cp2)=1.0000 V(cn2)=1.0000 V(op2)=1.0000 V(on2)=1.0000
+
+.OP
+
+.END

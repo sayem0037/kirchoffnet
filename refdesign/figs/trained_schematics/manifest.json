@@ -1,0 +1,80 @@
+[
+  {
+    "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_2spirals_L1.sp",
+    "sha256": "e1f669d26b9cd164f852c6e1afe7bd304b94544f97ca43a2df0cc96daf7651ad",
+    "rows": 3,
+    "output_pairs": 16,
+    "mos": 320,
+    "resistors": 128,
+    "capacitors": 32,
+    "voltage_sources": 9,
+    "covered_components": 489,
+    "all_components_covered": true,
+    "full_schematic": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\figs\\trained_schematics\\xbar_2spirals_L1_full.svg"
+  },
+  {
+    "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_2spirals_L2.sp",
+    "sha256": "1aa7cd8fd0e7891bac092660e615bd23af3e5d4a3e8b0890cc9ea7afff9bad59",
+    "rows": 17,
+    "output_pairs": 2,
+    "mos": 96,
+    "resistors": 72,
+    "capacitors": 4,
+    "voltage_sources": 37,
+    "covered_components": 209,
+    "all_components_covered": true,
+    "full_schematic": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\figs\\trained_schematics\\xbar_2spirals_L2_full.svg"
+  },
+  {
+    "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_circle_L1.sp",
+    "sha256": "dc2efb4ec22a4c95da25eddeca8ee005a1a4f8df9bd82bfe1b5903c14f95e282",
+    "rows": 3,
+    "output_pairs": 16,
+    "mos": 320,
+    "resistors": 128,
+    "capacitors": 32,
+    "voltage_sources": 9,
+    "covered_components": 489,
+    "all_components_covered": true,
+    "full_schematic": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\figs\\trained_schematics\\xbar_circle_L1_full.svg"
+  },
+  {
+    "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_circle_L2.sp",
+    "sha256": "09f548ed3a3e2848e655fa83c917d6ff72ab00f7ac2c358c24a4a3555f335daa",
+    "rows": 17,
+    "output_pairs": 2,
+    "mos": 96,
+    "resistors": 72,
+    "capacitors": 4,
+    "voltage_sources": 37,
+    "covered_components": 209,
+    "all_components_covered": true,
+    "full_schematic": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\figs\\trained_schematics\\xbar_circle_L2_full.svg"
+  },
+  {
+    "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_twomoon_L1.sp",
+    "sha256": "32211f56430dbb5d00edd2cc18b10830896cee62247a64312ec441458b11dddb",
+    "rows": 3,
+    "output_pairs": 16,
+    "mos": 320,
+    "resistors": 128,
+    "capacitors": 32,
+    "voltage_sources": 9,
+    "covered_components": 489,
+    "all_components_covered": true,
+    "full_schematic": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\figs\\trained_schematics\\xbar_twomoon_L1_full.svg"
+  },
+  {
+    "source": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\netlists\\trained\\xbar_twomoon_L2.sp",
+    "sha256": "eab7d1b23228e4f0f2f3a518d7c9181daceeb712f06a7551b5ab423d09955b54",
+    "rows": 17,
+    "output_pairs": 2,
+    "mos": 96,
+    "resistors": 72,
+    "capacitors": 4,
+    "voltage_sources": 37,
+    "covered_components": 209,
+    "all_components_covered": true,
+    "full_schematic": "D:\\Kirchoffnet\\kirchoff_claude\\refdesign\\figs\\trained_schematics\\xbar_twomoon_L2_full.svg"
+  }
+]

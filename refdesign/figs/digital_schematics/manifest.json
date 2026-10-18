@@ -1,0 +1,123 @@
+{
+  "source": "digital_netlist.py",
+  "sha256": "a7112367af0c44caf5c82ae0aeeb61bb96e45cf2f6a6ff30fa01a88979d71ae6",
+  "full_adder_mos": 44,
+  "full_adder_nand_gates": 11,
+  "ripple_adder_2bit_mos": 88,
+  "unsigned_multiplier_2x2_mos": 112,
+  "full_adder_drawn_names_match_netlist": true,
+  "full_network_transistor_netlist_exists": false,
+  "output_nodes_2x2": [
+    "mul_pp0_0",
+    "mul_s1_0",
+    "mul_s1_1",
+    "mul_c1_1"
+  ],
+  "primitive_connectivity": [
+    {
+      "id": 1,
+      "type": "NAND",
+      "inputs": [
+        "a",
+        "b"
+      ],
+      "out": "s_h_x1"
+    },
+    {
+      "id": 2,
+      "type": "NAND",
+      "inputs": [
+        "a",
+        "s_h_x1"
+      ],
+      "out": "s_h_x2"
+    },
+    {
+      "id": 3,
+      "type": "NAND",
+      "inputs": [
+        "b",
+        "s_h_x1"
+      ],
+      "out": "s_h_x3"
+    },
+    {
+      "id": 4,
+      "type": "NAND",
+      "inputs": [
+        "s_h_x2",
+        "s_h_x3"
+      ],
+      "out": "s_h"
+    },
+    {
+      "id": 5,
+      "type": "NAND",
+      "inputs": [
+        "s_h",
+        "cin"
+      ],
+      "out": "s_x1"
+    },
+    {
+      "id": 6,
+      "type": "NAND",
+      "inputs": [
+        "s_h",
+        "s_x1"
+      ],
+      "out": "s_x2"
+    },
+    {
+      "id": 7,
+      "type": "NAND",
+      "inputs": [
+        "cin",
+        "s_x1"
+      ],
+      "out": "s_x3"
+    },
+    {
+      "id": 8,
+      "type": "NAND",
+      "inputs": [
+        "s_x2",
+        "s_x3"
+      ],
+      "out": "s"
+    },
+    {
+      "id": 9,
+      "type": "NAND",
+      "inputs": [
+        "a",
+        "b"
+      ],
+      "out": "cout_n1"
+    },
+    {
+      "id": 10,
+      "type": "NAND",
+      "inputs": [
+        "s_h",
+        "cin"
+      ],
+      "out": "cout_n2"
+    },
+    {
+      "id": 11,
+      "type": "NAND",
+      "inputs": [
+        "cout_n1",
+        "cout_n2"
+      ],
+      "out": "cout"
+    }
+  ],
+  "boolean_checks": {
+    "full_adder": "8/8",
+    "unsigned_multiplier_2x2": "16/16",
+    "ripple_adder_2bit": "16/16",
+    "scope": "Boolean evaluation of recorded gates; no new transistor simulation"
+  }
+}

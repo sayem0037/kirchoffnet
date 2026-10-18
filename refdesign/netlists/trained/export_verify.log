@@ -1,0 +1,9 @@
+twomoon   test logged 0.9750  re-simulated 0.9750  MATCH  | sample 0: label 0 pred 0
+          netlists\trained\xbar_twomoon_L1.sp
+          netlists\trained\xbar_twomoon_L2.sp
+circle    test logged 0.9750  re-simulated 0.9750  MATCH  | sample 0: label 0 pred 0
+          netlists\trained\xbar_circle_L1.sp
+          netlists\trained\xbar_circle_L2.sp
+2spirals  test logged 0.9083  re-simulated 0.9083  MATCH  | sample 0: label 0 pred 0
+          netlists\trained\xbar_2spirals_L1.sp
+          netlists\trained\xbar_2spirals_L2.sp
