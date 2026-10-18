@@ -1,0 +1,5 @@
+{
+  "epoch": 1,
+  "test_acc": 0.5,
+  "train_acc": 0.7
+}
