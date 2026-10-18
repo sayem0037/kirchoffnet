@@ -1,0 +1,68 @@
+﻿xyce done 7s
+in-house 10n done 25s
+in-house 5n done 44s
+in-house 2.5n done 62s
+in-house 1n done 80s
+{
+ "10n_vs_xyce_dcop": {
+  "n_compared": 16,
+  "median_maxdiff": 0.13777181526466523,
+  "max_maxdiff": 0.3485018934940729,
+  "label_flips": 0,
+  "n_xyce_ok": 16
+ },
+ "10n_vs_xyce_uic": {
+  "n_compared": 16,
+  "median_maxdiff": 0.13777159776466522,
+  "max_maxdiff": 0.34855148349407283,
+  "label_flips": 0,
+  "n_xyce_ok": 16
+ },
+ "5n_vs_xyce_dcop": {
+  "n_compared": 16,
+  "median_maxdiff": 0.1606416777487698,
+  "max_maxdiff": 0.3450497630761542,
+  "label_flips": 0,
+  "n_xyce_ok": 16
+ },
+ "5n_vs_xyce_uic": {
+  "n_compared": 16,
+  "median_maxdiff": 0.16063726274876988,
+  "max_maxdiff": 0.34505218307615415,
+  "label_flips": 0,
+  "n_xyce_ok": 16
+ },
+ "2.5n_vs_xyce_dcop": {
+  "n_compared": 16,
+  "median_maxdiff": 0.18277919873614812,
+  "max_maxdiff": 0.3861376622979078,
+  "label_flips": 0,
+  "n_xyce_ok": 16
+ },
+ "2.5n_vs_xyce_uic": {
+  "n_compared": 16,
+  "median_maxdiff": 0.18277815873614822,
+  "max_maxdiff": 0.38614008229790775,
+  "label_flips": 0,
+  "n_xyce_ok": 16
+ },
+ "1n_vs_xyce_dcop": {
+  "n_compared": 16,
+  "median_maxdiff": 0.19801638129668797,
+  "max_maxdiff": 0.40996931388358604,
+  "label_flips": 0,
+  "n_xyce_ok": 16
+ },
+ "1n_vs_xyce_uic": {
+  "n_compared": 16,
+  "median_maxdiff": 0.19801534129668807,
+  "max_maxdiff": 0.409971733883586,
+  "label_flips": 0,
+  "n_xyce_ok": 16
+ },
+ "xyce_dcop_vs_uic": {
+  "label_flips": 0,
+  "n_failed_dcop": 0,
+  "n_failed_uic": 0
+ }
+}

@@ -1,0 +1,63 @@
+[final_time_and_status] 10s
+[ic_and_reset] 1s
+[adjoint_vs_finite_difference] 23s
+[timestep] 29s
+[repeat_order_parallel] 33s
+{
+ "final_time_and_status": {
+  "status_counts": {
+   "ok": 12
+  },
+  "t_final_min": 1e-07,
+  "t_final_max": 1e-07,
+  "tstop": 1.0000000000000001e-07
+ },
+ "ic_and_reset": {
+  "statuses": [
+   "ok",
+   "ok",
+   "ok"
+  ],
+  "t0_matches_ic_max_err": 4.508892035293144e-07,
+  "reset_x1_after_x2_max_diff": 9.325873406851315e-15,
+  "internal_dc_node_dm1_x1_vs_x2": [
+   3.2560898297511494,
+   3.256089829746234
+  ],
+  "internal_dc_node_tl1_x1_vs_x2": [
+   0.37812389301587995,
+   0.3781238938627679
+  ],
+  "final_state_x1_vs_x2_max_diff": 1.4583977186451083,
+  "state_change_t0_to_T_x1": 2.350648341829724
+ },
+ "timestep": [
+  {
+   "tstep": "10n",
+   "max_state_diff_vs_base": 0.0,
+   "label_flips_vs_base": 0,
+   "n_failed": 0
+  },
+  {
+   "tstep": "5n",
+   "max_state_diff_vs_base": 0.07570928135916688,
+   "label_flips_vs_base": 1,
+   "n_failed": 0
+  },
+  {
+   "tstep": "2.5n",
+   "max_state_diff_vs_base": 0.1123948590795032,
+   "label_flips_vs_base": 1,
+   "n_failed": 0
+  }
+ ],
+ "repeat_order_parallel": {
+  "n": 12,
+  "n_ok_all": 12,
+  "repeat_max_state_diff": 2.4868995751603507e-14,
+  "shuffled_order_max_state_diff": 2.1316282072803006e-14,
+  "parallel2_max_state_diff": 4.3076653355456074e-14,
+  "labels_identical": true
+ }
+}
+gradient worst rel err: 0.9999999999996984 failed: 0
